@@ -1,0 +1,342 @@
+{
+  "schema_version": 1,
+  "artifact": "testgen_report",
+  "tool": "meridian-testgen 0.1.0",
+  "generated_at": "2026-08-25T05:19:02+00:00",
+  "inputs": {
+    "mapping_ast": "results/rainbow_keys_snapshot_20260824_pre_safety/mapping_ast.json",
+    "mapping_requirements": "results/rainbow_keys_snapshot_20260824_pre_safety/mapping_requirements.json",
+    "codebase": "/private/tmp/rainbow_keys_codex2_comparison",
+    "out_dir": "results/rainbow_keys_codex2_safety_comparison"
+  },
+  "interpreter": {
+    "path": "<REPO_ROOT>/rainbow_keys/.venv/bin/python",
+    "source": "argument"
+  },
+  "source_run": {
+    "schema_version": 1,
+    "artifact": "mapping_ast",
+    "tool": "meridian-mapper 0.1.0",
+    "generated_at": "2026-08-23T22:38:18+00:00",
+    "ast_json": "results/rainbow_keys/ast.json",
+    "requirements_doc": "<REPO_ROOT>/rainbow_keys/SampleRequirements.md",
+    "codebase": "<REPO_ROOT>/rainbow_keys",
+    "source_run": {
+      "schema_version": 2,
+      "tool": "meridian-parser 0.2.0",
+      "generated_at": "2026-08-23T01:55:00+00:00",
+      "input_dir": "<REPO_ROOT>/rainbow_keys",
+      "git_commit": "44e622551ef8f0a9c031707faf111a6a98d7263c",
+      "python": "3.14.5"
+    },
+    "python": "3.14.5",
+    "llm_usage": {
+      "calls": 41,
+      "input_tokens": 889,
+      "output_tokens": 71469,
+      "cache_creation_input_tokens": 337585,
+      "cache_read_input_tokens": 2263516,
+      "total_cost_usd": 3.840727
+    }
+  },
+  "requirements_run": {
+    "schema_version": 1,
+    "artifact": "mapping_requirements",
+    "tool": "meridian-mapper 0.1.0",
+    "generated_at": "2026-08-23T22:38:18+00:00",
+    "ast_json": "results/rainbow_keys/ast.json",
+    "requirements_doc": "<REPO_ROOT>/rainbow_keys/SampleRequirements.md",
+    "codebase": "<REPO_ROOT>/rainbow_keys",
+    "source_run": {
+      "schema_version": 2,
+      "tool": "meridian-parser 0.2.0",
+      "generated_at": "2026-08-23T01:55:00+00:00",
+      "input_dir": "<REPO_ROOT>/rainbow_keys",
+      "git_commit": "44e622551ef8f0a9c031707faf111a6a98d7263c",
+      "python": "3.14.5"
+    },
+    "python": "3.14.5"
+  },
+  "python": "3.14.5",
+  "llm_usage": {
+    "calls": 26,
+    "input_tokens": 920971,
+    "output_tokens": 32929,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 737024,
+    "total_cost_usd": 0.0
+  },
+  "invocation": {
+    "backend": "codex_cli",
+    "model": null,
+    "argv": [
+      "results/rainbow_keys_snapshot_20260824_pre_safety/mapping_ast.json",
+      "results/rainbow_keys_snapshot_20260824_pre_safety/mapping_requirements.json",
+      "/private/tmp/rainbow_keys_codex2_comparison",
+      "--python",
+      "<REPO_ROOT>/rainbow_keys/.venv/bin/python",
+      "--out-dir",
+      "results/rainbow_keys_codex2_safety_comparison",
+      "--backend",
+      "codex_cli",
+      "--llm-timeout",
+      "600",
+      "--prompt-debug"
+    ]
+  },
+  "counts": {
+    "items": 26,
+    "valid": 26,
+    "exhausted": 0,
+    "attempts": 26,
+    "retries_used": 0,
+    "llm_calls": 26,
+    "files_written": 5,
+    "tests_written": 58
+  },
+  "skipped_category_leak": 0,
+  "llm_calls": [
+    {
+      "call": 1,
+      "input_tokens": 34296,
+      "output_tokens": 782,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 27136,
+      "cost_usd": 0.0
+    },
+    {
+      "call": 2,
+      "input_tokens": 16143,
+      "output_tokens": 479,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 11008,
+      "cost_usd": 0.0
+    },
+    {
+      "call": 3,
+      "input_tokens": 34524,
+      "output_tokens": 1511,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 27136,
+      "cost_usd": 0.0
+    },
+    {
+      "call": 4,
+      "input_tokens": 34809,
+      "output_tokens": 1420,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 27136,
+      "cost_usd": 0.0
+    },
+    {
+      "call": 5,
+      "input_tokens": 16130,
+      "output_tokens": 643,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 11008,
+      "cost_usd": 0.0
+    },
+    {
+      "call": 6,
+      "input_tokens": 53878,
+      "output_tokens": 1487,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 38144,
+      "cost_usd": 0.0
+    },
+    {
+      "call": 7,
+      "input_tokens": 54015,
+      "output_tokens": 1744,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 40192,
+      "cost_usd": 0.0
+    },
+    {
+      "call": 8,
+      "input_tokens": 53757,
+      "output_tokens": 1524,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 46336,
+      "cost_usd": 0.0
+    },
+    {
+      "call": 9,
+      "input_tokens": 54261,
+      "output_tokens": 1876,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 44288,
+      "cost_usd": 0.0
+    },
+    {
+      "call": 10,
+      "input_tokens": 53762,
+      "output_tokens": 1912,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 42240,
+      "cost_usd": 0.0
+    },
+    {
+      "call": 11,
+      "input_tokens": 34349,
+      "output_tokens": 1214,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 31232,
+      "cost_usd": 0.0
+    },
+    {
+      "call": 12,
+      "input_tokens": 34697,
+      "output_tokens": 1630,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 29184,
+      "cost_usd": 0.0
+    },
+    {
+      "call": 13,
+      "input_tokens": 54357,
+      "output_tokens": 2501,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 38144,
+      "cost_usd": 0.0
+    },
+    {
+      "call": 14,
+      "input_tokens": 16509,
+      "output_tokens": 659,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 15104,
+      "cost_usd": 0.0
+    },
+    {
+      "call": 15,
+      "input_tokens": 35143,
+      "output_tokens": 1028,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 29184,
+      "cost_usd": 0.0
+    },
+    {
+      "call": 16,
+      "input_tokens": 52465,
+      "output_tokens": 1831,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 45312,
+      "cost_usd": 0.0
+    },
+    {
+      "call": 17,
+      "input_tokens": 16140,
+      "output_tokens": 185,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 13056,
+      "cost_usd": 0.0
+    },
+    {
+      "call": 18,
+      "input_tokens": 16178,
+      "output_tokens": 564,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 11008,
+      "cost_usd": 0.0
+    },
+    {
+      "call": 19,
+      "input_tokens": 33397,
+      "output_tokens": 477,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 22016,
+      "cost_usd": 0.0
+    },
+    {
+      "call": 20,
+      "input_tokens": 33361,
+      "output_tokens": 767,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 30208,
+      "cost_usd": 0.0
+    },
+    {
+      "call": 21,
+      "input_tokens": 51245,
+      "output_tokens": 500,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 42240,
+      "cost_usd": 0.0
+    },
+    {
+      "call": 22,
+      "input_tokens": 16467,
+      "output_tokens": 963,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 15104,
+      "cost_usd": 0.0
+    },
+    {
+      "call": 23,
+      "input_tokens": 53752,
+      "output_tokens": 2482,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 46336,
+      "cost_usd": 0.0
+    },
+    {
+      "call": 24,
+      "input_tokens": 16899,
+      "output_tokens": 2247,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 13056,
+      "cost_usd": 0.0
+    },
+    {
+      "call": 25,
+      "input_tokens": 16501,
+      "output_tokens": 632,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 15104,
+      "cost_usd": 0.0
+    },
+    {
+      "call": 26,
+      "input_tokens": 33936,
+      "output_tokens": 1871,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 26112,
+      "cost_usd": 0.0
+    }
+  ],
+  "test_files": [
+    {
+      "path": "/private/tmp/rainbow_keys_codex2_comparison/test/test_req_1.py",
+      "relative_path": "test/test_req_1.py",
+      "category": "1",
+      "test_count": 29
+    },
+    {
+      "path": "/private/tmp/rainbow_keys_codex2_comparison/test/test_req_2.py",
+      "relative_path": "test/test_req_2.py",
+      "category": "2",
+      "test_count": 13
+    },
+    {
+      "path": "/private/tmp/rainbow_keys_codex2_comparison/test/test_req_3.py",
+      "relative_path": "test/test_req_3.py",
+      "category": "3",
+      "test_count": 4
+    },
+    {
+      "path": "/private/tmp/rainbow_keys_codex2_comparison/test/test_req_4.py",
+      "relative_path": "test/test_req_4.py",
+      "category": "4",
+      "test_count": 11
+    },
+    {
+      "path": "/private/tmp/rainbow_keys_codex2_comparison/test/test_structural.py",
+      "relative_path": "test/test_structural.py",
+      "category": "structural",
+      "test_count": 1
+    }
+  ],
+  "validation_catches": [],
+  "error_notes": []
+}

@@ -1,0 +1,2187 @@
+=== prompt 1 2026-08-25T04:06:50Z ===
+You are writing pytest unit tests for functions in an existing codebase.
+
+Below is one or more generation items. For each item you are given the
+function's source, its location, a checklist of structural obligations the
+tests should cover, and — for a mapped item — the requirement the function is
+supposed to satisfy. Write pytest test functions for each item.
+
+Rules:
+
+* Test the code as it is. If the code looks wrong, still write the test that
+  the requirement or the structure demands: a failing test is a finding, not a
+  mistake to write around.
+* Every test function you write must carry the comment
+  `# meridian: unit_id=<unit_id> requirement=<requirement>` on its own line
+  inside the function, copying the item's unit_id and requirement exactly.
+* Import what you use. The test source must compile and be collectable by
+  pytest on its own.
+* Tests must never touch real external resources — no audio or video
+  devices, no network connections, no subprocesses, no GUI windows, no
+  writes outside pytest's tmp_path. Where the code under test opens such a
+  boundary (an audio stream, a socket, a server), stub that library with
+  unittest.mock BEFORE importing the module, and test the logic around the
+  boundary. A test that opens a real device can crash the whole suite.
+* Answer for every item you were given, and for no other item — ONE entry per
+  item. To write several test functions for an item (the checklist usually
+  wants several), put them all inside that item's single "source" string.
+
+Answer with JSON and nothing else, in this shape:
+
+{"tests": [{"unit_id": "<unit_id>", "requirement": "<requirement code or 'structural'>", "source": "<the test source>"}, ...]}
+
+GENERATION ITEMS (1):
+
+ITEM 1
+
+unit_id: f046b88d59ff
+
+requirement: 1-4
+
+REQUIREMENT 1-4: Latency Audible output begins within 20 ms of a key press, with no clicks or pops at note start or stop.
+
+stage-2 effect claim: marks the release phase to begin immediately at the current sample position, enabling smooth note termination without abrupt cutoff
+
+stage-2 evidence snippet:
+self._releasing_since = self._samples_rendered
+
+FUNCTION python.audio_logic._Voice.note_off (def note_off(self) -> None) at python/audio_logic.py:43-44
+
+IMPORT: the test directory's conftest puts this file's directory on sys.path — import the code under test as `from audio_logic import …` (or `import audio_logic`). Do not use any other import path and do not modify sys.path yourself.
+
+SOURCE:
+def note_off(self) -> None:
+        self._releasing_since = self._samples_rendered
+
+STRUCTURAL OBLIGATIONS:
+- return — assert the result is None and has the expected value
+
+RESOURCE SAFETY PROFILE:
+These boundaries are present in the code under test. Isolate every one using its required strategy; do not call it directly.
+- hardware: matched sounddevice; required strategy: mock. Patch the symbol where the module under test looks it up; use a fake device response instead of real hardware.
+
+
+=== prompt 2 2026-08-25T04:07:03Z ===
+You are writing pytest unit tests for functions in an existing codebase.
+
+Below is one or more generation items. For each item you are given the
+function's source, its location, a checklist of structural obligations the
+tests should cover, and — for a mapped item — the requirement the function is
+supposed to satisfy. Write pytest test functions for each item.
+
+Rules:
+
+* Test the code as it is. If the code looks wrong, still write the test that
+  the requirement or the structure demands: a failing test is a finding, not a
+  mistake to write around.
+* Every test function you write must carry the comment
+  `# meridian: unit_id=<unit_id> requirement=<requirement>` on its own line
+  inside the function, copying the item's unit_id and requirement exactly.
+* Import what you use. The test source must compile and be collectable by
+  pytest on its own.
+* Tests must never touch real external resources — no audio or video
+  devices, no network connections, no subprocesses, no GUI windows, no
+  writes outside pytest's tmp_path. Where the code under test opens such a
+  boundary (an audio stream, a socket, a server), stub that library with
+  unittest.mock BEFORE importing the module, and test the logic around the
+  boundary. A test that opens a real device can crash the whole suite.
+* Answer for every item you were given, and for no other item — ONE entry per
+  item. To write several test functions for an item (the checklist usually
+  wants several), put them all inside that item's single "source" string.
+
+Answer with JSON and nothing else, in this shape:
+
+{"tests": [{"unit_id": "<unit_id>", "requirement": "<requirement code or 'structural'>", "source": "<the test source>"}, ...]}
+
+GENERATION ITEMS (1):
+
+ITEM 1
+
+unit_id: f046b88d59ff
+
+requirement: 4-1
+
+REQUIREMENT 4-1: Shared Logic Note mapping, polyphony, and synthesis live in a single logic layer shared by all interfaces; interfaces only report raw key transitions and render the resulting state.
+
+stage-2 effect claim: records note release time in shared audio logic layer
+
+stage-2 evidence snippet:
+self._releasing_since = self._samples_rendered
+
+FUNCTION python.audio_logic._Voice.note_off (def note_off(self) -> None) at python/audio_logic.py:43-44
+
+IMPORT: the test directory's conftest puts this file's directory on sys.path — import the code under test as `from audio_logic import …` (or `import audio_logic`). Do not use any other import path and do not modify sys.path yourself.
+
+SOURCE:
+def note_off(self) -> None:
+        self._releasing_since = self._samples_rendered
+
+STRUCTURAL OBLIGATIONS:
+- return — assert the result is None and has the expected value
+
+RESOURCE SAFETY PROFILE:
+These boundaries are present in the code under test. Isolate every one using its required strategy; do not call it directly.
+- hardware: matched sounddevice; required strategy: mock. Patch the symbol where the module under test looks it up; use a fake device response instead of real hardware.
+
+
+=== prompt 3 2026-08-25T04:07:17Z ===
+You are writing pytest unit tests for functions in an existing codebase.
+
+Below is one or more generation items. For each item you are given the
+function's source, its location, a checklist of structural obligations the
+tests should cover, and — for a mapped item — the requirement the function is
+supposed to satisfy. Write pytest test functions for each item.
+
+Rules:
+
+* Test the code as it is. If the code looks wrong, still write the test that
+  the requirement or the structure demands: a failing test is a finding, not a
+  mistake to write around.
+* Every test function you write must carry the comment
+  `# meridian: unit_id=<unit_id> requirement=<requirement>` on its own line
+  inside the function, copying the item's unit_id and requirement exactly.
+* Import what you use. The test source must compile and be collectable by
+  pytest on its own.
+* Tests must never touch real external resources — no audio or video
+  devices, no network connections, no subprocesses, no GUI windows, no
+  writes outside pytest's tmp_path. Where the code under test opens such a
+  boundary (an audio stream, a socket, a server), stub that library with
+  unittest.mock BEFORE importing the module, and test the logic around the
+  boundary. A test that opens a real device can crash the whole suite.
+* Answer for every item you were given, and for no other item — ONE entry per
+  item. To write several test functions for an item (the checklist usually
+  wants several), put them all inside that item's single "source" string.
+
+Answer with JSON and nothing else, in this shape:
+
+{"tests": [{"unit_id": "<unit_id>", "requirement": "<requirement code or 'structural'>", "source": "<the test source>"}, ...]}
+
+GENERATION ITEMS (1):
+
+ITEM 1
+
+unit_id: f5f6aafb5968
+
+requirement: 1-4
+
+REQUIREMENT 1-4: Latency Audible output begins within 20 ms of a key press, with no clicks or pops at note start or stop.
+
+stage-2 effect claim: Applies attack and release envelopes that ramp audio amplitude gradually from zero at note start and to zero at note stop, eliminating clicks and pops
+
+stage-2 evidence snippet:
+envelope = np.minimum(1.0, sample_indices / self._attack_samples)
+if self._releasing_since is not None:
+    released_for = sample_indices - self._releasing_since
+    release_envelope = np.maximum(0.0, 1.0 - released_for / self._release_samples)
+    envelope = np.minimum(envelope, release_envelope)
+    if release_envelope[-1] <= 0.0:
+        self.finished = True
+
+FUNCTION python.audio_logic._Voice.render (def render(self, frame_count: int) -> np.ndarray) at python/audio_logic.py:46-62
+
+IMPORT: the test directory's conftest puts this file's directory on sys.path — import the code under test as `from audio_logic import …` (or `import audio_logic`). Do not use any other import path and do not modify sys.path yourself.
+
+SOURCE:
+def render(self, frame_count: int) -> np.ndarray:
+        sample_indices = self._samples_rendered + np.arange(frame_count)
+        phases = self._phase + self._phase_increment * np.arange(frame_count)
+        wave = np.sin(phases)
+
+        envelope = np.minimum(1.0, sample_indices / self._attack_samples)
+        if self._releasing_since is not None:
+            released_for = sample_indices - self._releasing_since
+            release_envelope = np.maximum(0.0, 1.0 - released_for / self._release_samples)
+            envelope = np.minimum(envelope, release_envelope)
+            if release_envelope[-1] <= 0.0:
+                self.finished = True
+
+        self._phase = (self._phase + self._phase_increment * frame_count) % (2.0 * math.pi)
+        self._samples_rendered += frame_count
+
+        return (wave * envelope * _PER_VOICE_AMPLITUDE).astype(np.float32)
+
+STRUCTURAL OBLIGATIONS:
+- parameter 'frame_count' (int) — exercise a representative value
+- parameter 'frame_count' — cover the numeric boundaries: zero, one, many
+- return — assert the result is np.ndarray and has the expected value
+- cover the if branch at line 52
+- cover the if branch at line 56
+
+RESOURCE SAFETY PROFILE:
+These boundaries are present in the code under test. Isolate every one using its required strategy; do not call it directly.
+- hardware: matched sounddevice; required strategy: mock. Patch the symbol where the module under test looks it up; use a fake device response instead of real hardware.
+
+
+=== prompt 4 2026-08-25T04:07:50Z ===
+You are writing pytest unit tests for functions in an existing codebase.
+
+Below is one or more generation items. For each item you are given the
+function's source, its location, a checklist of structural obligations the
+tests should cover, and — for a mapped item — the requirement the function is
+supposed to satisfy. Write pytest test functions for each item.
+
+Rules:
+
+* Test the code as it is. If the code looks wrong, still write the test that
+  the requirement or the structure demands: a failing test is a finding, not a
+  mistake to write around.
+* Every test function you write must carry the comment
+  `# meridian: unit_id=<unit_id> requirement=<requirement>` on its own line
+  inside the function, copying the item's unit_id and requirement exactly.
+* Import what you use. The test source must compile and be collectable by
+  pytest on its own.
+* Tests must never touch real external resources — no audio or video
+  devices, no network connections, no subprocesses, no GUI windows, no
+  writes outside pytest's tmp_path. Where the code under test opens such a
+  boundary (an audio stream, a socket, a server), stub that library with
+  unittest.mock BEFORE importing the module, and test the logic around the
+  boundary. A test that opens a real device can crash the whole suite.
+* Answer for every item you were given, and for no other item — ONE entry per
+  item. To write several test functions for an item (the checklist usually
+  wants several), put them all inside that item's single "source" string.
+
+Answer with JSON and nothing else, in this shape:
+
+{"tests": [{"unit_id": "<unit_id>", "requirement": "<requirement code or 'structural'>", "source": "<the test source>"}, ...]}
+
+GENERATION ITEMS (1):
+
+ITEM 1
+
+unit_id: f5f6aafb5968
+
+requirement: 4-1
+
+REQUIREMENT 4-1: Shared Logic Note mapping, polyphony, and synthesis live in a single logic layer shared by all interfaces; interfaces only report raw key transitions and render the resulting state.
+
+stage-2 effect claim: performs waveform synthesis in the shared audio_logic layer
+
+stage-2 evidence snippet:
+        wave = np.sin(phases)
+
+FUNCTION python.audio_logic._Voice.render (def render(self, frame_count: int) -> np.ndarray) at python/audio_logic.py:46-62
+
+IMPORT: the test directory's conftest puts this file's directory on sys.path — import the code under test as `from audio_logic import …` (or `import audio_logic`). Do not use any other import path and do not modify sys.path yourself.
+
+SOURCE:
+def render(self, frame_count: int) -> np.ndarray:
+        sample_indices = self._samples_rendered + np.arange(frame_count)
+        phases = self._phase + self._phase_increment * np.arange(frame_count)
+        wave = np.sin(phases)
+
+        envelope = np.minimum(1.0, sample_indices / self._attack_samples)
+        if self._releasing_since is not None:
+            released_for = sample_indices - self._releasing_since
+            release_envelope = np.maximum(0.0, 1.0 - released_for / self._release_samples)
+            envelope = np.minimum(envelope, release_envelope)
+            if release_envelope[-1] <= 0.0:
+                self.finished = True
+
+        self._phase = (self._phase + self._phase_increment * frame_count) % (2.0 * math.pi)
+        self._samples_rendered += frame_count
+
+        return (wave * envelope * _PER_VOICE_AMPLITUDE).astype(np.float32)
+
+STRUCTURAL OBLIGATIONS:
+- parameter 'frame_count' (int) — exercise a representative value
+- parameter 'frame_count' — cover the numeric boundaries: zero, one, many
+- return — assert the result is np.ndarray and has the expected value
+- cover the if branch at line 52
+- cover the if branch at line 56
+
+RESOURCE SAFETY PROFILE:
+These boundaries are present in the code under test. Isolate every one using its required strategy; do not call it directly.
+- hardware: matched sounddevice; required strategy: mock. Patch the symbol where the module under test looks it up; use a fake device response instead of real hardware.
+
+
+=== prompt 5 2026-08-25T04:08:19Z ===
+You are writing pytest unit tests for functions in an existing codebase.
+
+Below is one or more generation items. For each item you are given the
+function's source, its location, a checklist of structural obligations the
+tests should cover, and — for a mapped item — the requirement the function is
+supposed to satisfy. Write pytest test functions for each item.
+
+Rules:
+
+* Test the code as it is. If the code looks wrong, still write the test that
+  the requirement or the structure demands: a failing test is a finding, not a
+  mistake to write around.
+* Every test function you write must carry the comment
+  `# meridian: unit_id=<unit_id> requirement=<requirement>` on its own line
+  inside the function, copying the item's unit_id and requirement exactly.
+* Import what you use. The test source must compile and be collectable by
+  pytest on its own.
+* Tests must never touch real external resources — no audio or video
+  devices, no network connections, no subprocesses, no GUI windows, no
+  writes outside pytest's tmp_path. Where the code under test opens such a
+  boundary (an audio stream, a socket, a server), stub that library with
+  unittest.mock BEFORE importing the module, and test the logic around the
+  boundary. A test that opens a real device can crash the whole suite.
+* Answer for every item you were given, and for no other item — ONE entry per
+  item. To write several test functions for an item (the checklist usually
+  wants several), put them all inside that item's single "source" string.
+
+Answer with JSON and nothing else, in this shape:
+
+{"tests": [{"unit_id": "<unit_id>", "requirement": "<requirement code or 'structural'>", "source": "<the test source>"}, ...]}
+
+GENERATION ITEMS (1):
+
+ITEM 1
+
+unit_id: d9ae1d90c595
+
+requirement: 3-4
+
+REQUIREMENT 3-4: Quit The TUI exits cleanly on `q`, restoring the terminal state and silencing all notes.
+
+stage-2 effect claim: stops and closes the audio stream, silencing all notes
+
+stage-2 evidence snippet:
+        self._stream.stop()
+        self._stream.close()
+
+FUNCTION python.audio_logic.NoteEngine.close (def close(self) -> None) at python/audio_logic.py:96-98
+
+IMPORT: the test directory's conftest puts this file's directory on sys.path — import the code under test as `from audio_logic import …` (or `import audio_logic`). Do not use any other import path and do not modify sys.path yourself.
+
+SOURCE:
+def close(self) -> None:
+        self._stream.stop()
+        self._stream.close()
+
+STRUCTURAL OBLIGATIONS:
+- return — assert the result is None and has the expected value
+
+RESOURCE SAFETY PROFILE:
+These boundaries are present in the code under test. Isolate every one using its required strategy; do not call it directly.
+- hardware: matched sounddevice; required strategy: mock. Patch the symbol where the module under test looks it up; use a fake device response instead of real hardware.
+
+
+=== prompt 6 2026-08-25T04:08:35Z ===
+You are writing pytest unit tests for functions in an existing codebase.
+
+Below is one or more generation items. For each item you are given the
+function's source, its location, a checklist of structural obligations the
+tests should cover, and — for a mapped item — the requirement the function is
+supposed to satisfy. Write pytest test functions for each item.
+
+Rules:
+
+* Test the code as it is. If the code looks wrong, still write the test that
+  the requirement or the structure demands: a failing test is a finding, not a
+  mistake to write around.
+* Every test function you write must carry the comment
+  `# meridian: unit_id=<unit_id> requirement=<requirement>` on its own line
+  inside the function, copying the item's unit_id and requirement exactly.
+* Import what you use. The test source must compile and be collectable by
+  pytest on its own.
+* Tests must never touch real external resources — no audio or video
+  devices, no network connections, no subprocesses, no GUI windows, no
+  writes outside pytest's tmp_path. Where the code under test opens such a
+  boundary (an audio stream, a socket, a server), stub that library with
+  unittest.mock BEFORE importing the module, and test the logic around the
+  boundary. A test that opens a real device can crash the whole suite.
+* Answer for every item you were given, and for no other item — ONE entry per
+  item. To write several test functions for an item (the checklist usually
+  wants several), put them all inside that item's single "source" string.
+
+Answer with JSON and nothing else, in this shape:
+
+{"tests": [{"unit_id": "<unit_id>", "requirement": "<requirement code or 'structural'>", "source": "<the test source>"}, ...]}
+
+GENERATION ITEMS (1):
+
+ITEM 1
+
+unit_id: e131d04fbb6e
+
+requirement: 1-2
+
+REQUIREMENT 1-2: Note Lifetime A note starts sounding on key-down and stops on key-up. Holding a key sustains its note; no re-pressing is required.
+
+stage-2 effect claim: Starts a note sounding on key-down by creating a voice and emitting a note-on event, and ignores duplicate key-down events to sustain the note while held without re-pressing
+
+stage-2 evidence snippet:
+if key in self._active or key in self._pending:
+                return  # already sounding, or already waiting -- ignore duplicate key-down
+            if len(self._active) < MAX_SIMULTANEOUS_NOTES:
+                self._active[key] = _Voice(key, frequency_for_key(key))
+                event = (key, True)
+            else:
+                self._pending.append(key)
+        if event:
+            self._emit(*event)
+
+FUNCTION python.audio_logic.NoteEngine.key_down (def key_down(self, key: str) -> None) at python/audio_logic.py:100-112
+
+IMPORT: the test directory's conftest puts this file's directory on sys.path — import the code under test as `from audio_logic import …` (or `import audio_logic`). Do not use any other import path and do not modify sys.path yourself.
+
+SOURCE:
+def key_down(self, key: str) -> None:
+        """Req 1.4: a note begins sounding on key-down, subject to the Req 1.3 voice limit."""
+        event: Optional[tuple[str, bool]] = None
+        with self._lock:
+            if key in self._active or key in self._pending:
+                return  # already sounding, or already waiting -- ignore duplicate key-down
+            if len(self._active) < MAX_SIMULTANEOUS_NOTES:
+                self._active[key] = _Voice(key, frequency_for_key(key))
+                event = (key, True)
+            else:
+                self._pending.append(key)
+        if event:
+            self._emit(*event)
+
+STRUCTURAL OBLIGATIONS:
+- parameter 'key' (str) — exercise a representative value
+- parameter 'key' — cover the sequence boundaries: empty, one element, many elements
+- return — assert the result is None and has the expected value
+- cover the if branch at line 104
+- cover the if branch at line 106
+- cover the else branch of the if at line 106
+- cover the if branch at line 111
+
+RESOURCE SAFETY PROFILE:
+These boundaries are present in the code under test. Isolate every one using its required strategy; do not call it directly.
+- hardware: matched sounddevice; required strategy: mock. Patch the symbol where the module under test looks it up; use a fake device response instead of real hardware.
+
+
+=== prompt 7 2026-08-25T04:09:01Z ===
+You are writing pytest unit tests for functions in an existing codebase.
+
+Below is one or more generation items. For each item you are given the
+function's source, its location, a checklist of structural obligations the
+tests should cover, and — for a mapped item — the requirement the function is
+supposed to satisfy. Write pytest test functions for each item.
+
+Rules:
+
+* Test the code as it is. If the code looks wrong, still write the test that
+  the requirement or the structure demands: a failing test is a finding, not a
+  mistake to write around.
+* Every test function you write must carry the comment
+  `# meridian: unit_id=<unit_id> requirement=<requirement>` on its own line
+  inside the function, copying the item's unit_id and requirement exactly.
+* Import what you use. The test source must compile and be collectable by
+  pytest on its own.
+* Tests must never touch real external resources — no audio or video
+  devices, no network connections, no subprocesses, no GUI windows, no
+  writes outside pytest's tmp_path. Where the code under test opens such a
+  boundary (an audio stream, a socket, a server), stub that library with
+  unittest.mock BEFORE importing the module, and test the logic around the
+  boundary. A test that opens a real device can crash the whole suite.
+* Answer for every item you were given, and for no other item — ONE entry per
+  item. To write several test functions for an item (the checklist usually
+  wants several), put them all inside that item's single "source" string.
+
+Answer with JSON and nothing else, in this shape:
+
+{"tests": [{"unit_id": "<unit_id>", "requirement": "<requirement code or 'structural'>", "source": "<the test source>"}, ...]}
+
+GENERATION ITEMS (1):
+
+ITEM 1
+
+unit_id: e131d04fbb6e
+
+requirement: 1-3
+
+REQUIREMENT 1-3: Polyphony Limit At most 3 notes sound simultaneously. A key pressed while 3 notes are sounding waits (if still held) and begins sounding as soon as a slot frees.
+
+stage-2 effect claim: When a key is pressed while the number of active notes has reached MAX_SIMULTANEOUS_NOTES, the key is added to a pending queue rather than immediately becoming active
+
+stage-2 evidence snippet:
+            if len(self._active) < MAX_SIMULTANEOUS_NOTES:
+                self._active[key] = _Voice(key, frequency_for_key(key))
+                event = (key, True)
+            else:
+                self._pending.append(key)
+
+FUNCTION python.audio_logic.NoteEngine.key_down (def key_down(self, key: str) -> None) at python/audio_logic.py:100-112
+
+IMPORT: the test directory's conftest puts this file's directory on sys.path — import the code under test as `from audio_logic import …` (or `import audio_logic`). Do not use any other import path and do not modify sys.path yourself.
+
+SOURCE:
+def key_down(self, key: str) -> None:
+        """Req 1.4: a note begins sounding on key-down, subject to the Req 1.3 voice limit."""
+        event: Optional[tuple[str, bool]] = None
+        with self._lock:
+            if key in self._active or key in self._pending:
+                return  # already sounding, or already waiting -- ignore duplicate key-down
+            if len(self._active) < MAX_SIMULTANEOUS_NOTES:
+                self._active[key] = _Voice(key, frequency_for_key(key))
+                event = (key, True)
+            else:
+                self._pending.append(key)
+        if event:
+            self._emit(*event)
+
+STRUCTURAL OBLIGATIONS:
+- parameter 'key' (str) — exercise a representative value
+- parameter 'key' — cover the sequence boundaries: empty, one element, many elements
+- return — assert the result is None and has the expected value
+- cover the if branch at line 104
+- cover the if branch at line 106
+- cover the else branch of the if at line 106
+- cover the if branch at line 111
+
+RESOURCE SAFETY PROFILE:
+These boundaries are present in the code under test. Isolate every one using its required strategy; do not call it directly.
+- hardware: matched sounddevice; required strategy: mock. Patch the symbol where the module under test looks it up; use a fake device response instead of real hardware.
+
+
+=== prompt 8 2026-08-25T04:09:28Z ===
+You are writing pytest unit tests for functions in an existing codebase.
+
+Below is one or more generation items. For each item you are given the
+function's source, its location, a checklist of structural obligations the
+tests should cover, and — for a mapped item — the requirement the function is
+supposed to satisfy. Write pytest test functions for each item.
+
+Rules:
+
+* Test the code as it is. If the code looks wrong, still write the test that
+  the requirement or the structure demands: a failing test is a finding, not a
+  mistake to write around.
+* Every test function you write must carry the comment
+  `# meridian: unit_id=<unit_id> requirement=<requirement>` on its own line
+  inside the function, copying the item's unit_id and requirement exactly.
+* Import what you use. The test source must compile and be collectable by
+  pytest on its own.
+* Tests must never touch real external resources — no audio or video
+  devices, no network connections, no subprocesses, no GUI windows, no
+  writes outside pytest's tmp_path. Where the code under test opens such a
+  boundary (an audio stream, a socket, a server), stub that library with
+  unittest.mock BEFORE importing the module, and test the logic around the
+  boundary. A test that opens a real device can crash the whole suite.
+* Answer for every item you were given, and for no other item — ONE entry per
+  item. To write several test functions for an item (the checklist usually
+  wants several), put them all inside that item's single "source" string.
+
+Answer with JSON and nothing else, in this shape:
+
+{"tests": [{"unit_id": "<unit_id>", "requirement": "<requirement code or 'structural'>", "source": "<the test source>"}, ...]}
+
+GENERATION ITEMS (1):
+
+ITEM 1
+
+unit_id: e131d04fbb6e
+
+requirement: 1-4
+
+REQUIREMENT 1-4: Latency Audible output begins within 20 ms of a key press, with no clicks or pops at note start or stop.
+
+stage-2 effect claim: creates a voice and emits a note-on event immediately when a key is pressed (subject to voice limit)
+
+stage-2 evidence snippet:
+            if len(self._active) < MAX_SIMULTANEOUS_NOTES:
+                self._active[key] = _Voice(key, frequency_for_key(key))
+                event = (key, True)
+            else:
+                self._pending.append(key)
+        if event:
+            self._emit(*event)
+
+FUNCTION python.audio_logic.NoteEngine.key_down (def key_down(self, key: str) -> None) at python/audio_logic.py:100-112
+
+IMPORT: the test directory's conftest puts this file's directory on sys.path — import the code under test as `from audio_logic import …` (or `import audio_logic`). Do not use any other import path and do not modify sys.path yourself.
+
+SOURCE:
+def key_down(self, key: str) -> None:
+        """Req 1.4: a note begins sounding on key-down, subject to the Req 1.3 voice limit."""
+        event: Optional[tuple[str, bool]] = None
+        with self._lock:
+            if key in self._active or key in self._pending:
+                return  # already sounding, or already waiting -- ignore duplicate key-down
+            if len(self._active) < MAX_SIMULTANEOUS_NOTES:
+                self._active[key] = _Voice(key, frequency_for_key(key))
+                event = (key, True)
+            else:
+                self._pending.append(key)
+        if event:
+            self._emit(*event)
+
+STRUCTURAL OBLIGATIONS:
+- parameter 'key' (str) — exercise a representative value
+- parameter 'key' — cover the sequence boundaries: empty, one element, many elements
+- return — assert the result is None and has the expected value
+- cover the if branch at line 104
+- cover the if branch at line 106
+- cover the else branch of the if at line 106
+- cover the if branch at line 111
+
+RESOURCE SAFETY PROFILE:
+These boundaries are present in the code under test. Isolate every one using its required strategy; do not call it directly.
+- hardware: matched sounddevice; required strategy: mock. Patch the symbol where the module under test looks it up; use a fake device response instead of real hardware.
+
+
+=== prompt 9 2026-08-25T04:09:49Z ===
+You are writing pytest unit tests for functions in an existing codebase.
+
+Below is one or more generation items. For each item you are given the
+function's source, its location, a checklist of structural obligations the
+tests should cover, and — for a mapped item — the requirement the function is
+supposed to satisfy. Write pytest test functions for each item.
+
+Rules:
+
+* Test the code as it is. If the code looks wrong, still write the test that
+  the requirement or the structure demands: a failing test is a finding, not a
+  mistake to write around.
+* Every test function you write must carry the comment
+  `# meridian: unit_id=<unit_id> requirement=<requirement>` on its own line
+  inside the function, copying the item's unit_id and requirement exactly.
+* Import what you use. The test source must compile and be collectable by
+  pytest on its own.
+* Tests must never touch real external resources — no audio or video
+  devices, no network connections, no subprocesses, no GUI windows, no
+  writes outside pytest's tmp_path. Where the code under test opens such a
+  boundary (an audio stream, a socket, a server), stub that library with
+  unittest.mock BEFORE importing the module, and test the logic around the
+  boundary. A test that opens a real device can crash the whole suite.
+* Answer for every item you were given, and for no other item — ONE entry per
+  item. To write several test functions for an item (the checklist usually
+  wants several), put them all inside that item's single "source" string.
+
+Answer with JSON and nothing else, in this shape:
+
+{"tests": [{"unit_id": "<unit_id>", "requirement": "<requirement code or 'structural'>", "source": "<the test source>"}, ...]}
+
+GENERATION ITEMS (1):
+
+ITEM 1
+
+unit_id: e131d04fbb6e
+
+requirement: 2-2
+
+REQUIREMENT 2-2: Pressed-Key Highlight While a key's note is sounding, its on-screen element is visibly highlighted; it returns to normal when the note stops. A key waiting on the polyphony limit (1.3) is not highlighted until it actually sounds.
+
+stage-2 effect claim: emits a key-down event only when the note actually starts sounding (added to _active), not when the key is waiting in _pending on the polyphony limit
+
+stage-2 evidence snippet:
+if len(self._active) < MAX_SIMULTANEOUS_NOTES:
+            self._active[key] = _Voice(key, frequency_for_key(key))
+            event = (key, True)
+        else:
+            self._pending.append(key)
+    if event:
+        self._emit(*event)
+
+FUNCTION python.audio_logic.NoteEngine.key_down (def key_down(self, key: str) -> None) at python/audio_logic.py:100-112
+
+IMPORT: the test directory's conftest puts this file's directory on sys.path — import the code under test as `from audio_logic import …` (or `import audio_logic`). Do not use any other import path and do not modify sys.path yourself.
+
+SOURCE:
+def key_down(self, key: str) -> None:
+        """Req 1.4: a note begins sounding on key-down, subject to the Req 1.3 voice limit."""
+        event: Optional[tuple[str, bool]] = None
+        with self._lock:
+            if key in self._active or key in self._pending:
+                return  # already sounding, or already waiting -- ignore duplicate key-down
+            if len(self._active) < MAX_SIMULTANEOUS_NOTES:
+                self._active[key] = _Voice(key, frequency_for_key(key))
+                event = (key, True)
+            else:
+                self._pending.append(key)
+        if event:
+            self._emit(*event)
+
+STRUCTURAL OBLIGATIONS:
+- parameter 'key' (str) — exercise a representative value
+- parameter 'key' — cover the sequence boundaries: empty, one element, many elements
+- return — assert the result is None and has the expected value
+- cover the if branch at line 104
+- cover the if branch at line 106
+- cover the else branch of the if at line 106
+- cover the if branch at line 111
+
+RESOURCE SAFETY PROFILE:
+These boundaries are present in the code under test. Isolate every one using its required strategy; do not call it directly.
+- hardware: matched sounddevice; required strategy: mock. Patch the symbol where the module under test looks it up; use a fake device response instead of real hardware.
+
+
+=== prompt 10 2026-08-25T04:10:19Z ===
+You are writing pytest unit tests for functions in an existing codebase.
+
+Below is one or more generation items. For each item you are given the
+function's source, its location, a checklist of structural obligations the
+tests should cover, and — for a mapped item — the requirement the function is
+supposed to satisfy. Write pytest test functions for each item.
+
+Rules:
+
+* Test the code as it is. If the code looks wrong, still write the test that
+  the requirement or the structure demands: a failing test is a finding, not a
+  mistake to write around.
+* Every test function you write must carry the comment
+  `# meridian: unit_id=<unit_id> requirement=<requirement>` on its own line
+  inside the function, copying the item's unit_id and requirement exactly.
+* Import what you use. The test source must compile and be collectable by
+  pytest on its own.
+* Tests must never touch real external resources — no audio or video
+  devices, no network connections, no subprocesses, no GUI windows, no
+  writes outside pytest's tmp_path. Where the code under test opens such a
+  boundary (an audio stream, a socket, a server), stub that library with
+  unittest.mock BEFORE importing the module, and test the logic around the
+  boundary. A test that opens a real device can crash the whole suite.
+* Answer for every item you were given, and for no other item — ONE entry per
+  item. To write several test functions for an item (the checklist usually
+  wants several), put them all inside that item's single "source" string.
+
+Answer with JSON and nothing else, in this shape:
+
+{"tests": [{"unit_id": "<unit_id>", "requirement": "<requirement code or 'structural'>", "source": "<the test source>"}, ...]}
+
+GENERATION ITEMS (1):
+
+ITEM 1
+
+unit_id: e131d04fbb6e
+
+requirement: 4-1
+
+REQUIREMENT 4-1: Shared Logic Note mapping, polyphony, and synthesis live in a single logic layer shared by all interfaces; interfaces only report raw key transitions and render the resulting state.
+
+stage-2 effect claim: The function implements shared polyphony and note-mapping logic that processes raw key input by converting keys to frequencies and enforcing voice limits, independent of which interface reported the key transition
+
+stage-2 evidence snippet:
+        if len(self._active) < MAX_SIMULTANEOUS_NOTES:
+            self._active[key] = _Voice(key, frequency_for_key(key))
+            event = (key, True)
+        else:
+            self._pending.append(key)
+
+FUNCTION python.audio_logic.NoteEngine.key_down (def key_down(self, key: str) -> None) at python/audio_logic.py:100-112
+
+IMPORT: the test directory's conftest puts this file's directory on sys.path — import the code under test as `from audio_logic import …` (or `import audio_logic`). Do not use any other import path and do not modify sys.path yourself.
+
+SOURCE:
+def key_down(self, key: str) -> None:
+        """Req 1.4: a note begins sounding on key-down, subject to the Req 1.3 voice limit."""
+        event: Optional[tuple[str, bool]] = None
+        with self._lock:
+            if key in self._active or key in self._pending:
+                return  # already sounding, or already waiting -- ignore duplicate key-down
+            if len(self._active) < MAX_SIMULTANEOUS_NOTES:
+                self._active[key] = _Voice(key, frequency_for_key(key))
+                event = (key, True)
+            else:
+                self._pending.append(key)
+        if event:
+            self._emit(*event)
+
+STRUCTURAL OBLIGATIONS:
+- parameter 'key' (str) — exercise a representative value
+- parameter 'key' — cover the sequence boundaries: empty, one element, many elements
+- return — assert the result is None and has the expected value
+- cover the if branch at line 104
+- cover the if branch at line 106
+- cover the else branch of the if at line 106
+- cover the if branch at line 111
+
+RESOURCE SAFETY PROFILE:
+These boundaries are present in the code under test. Isolate every one using its required strategy; do not call it directly.
+- hardware: matched sounddevice; required strategy: mock. Patch the symbol where the module under test looks it up; use a fake device response instead of real hardware.
+
+
+=== prompt 11 2026-08-25T04:10:54Z ===
+You are writing pytest unit tests for functions in an existing codebase.
+
+Below is one or more generation items. For each item you are given the
+function's source, its location, a checklist of structural obligations the
+tests should cover, and — for a mapped item — the requirement the function is
+supposed to satisfy. Write pytest test functions for each item.
+
+Rules:
+
+* Test the code as it is. If the code looks wrong, still write the test that
+  the requirement or the structure demands: a failing test is a finding, not a
+  mistake to write around.
+* Every test function you write must carry the comment
+  `# meridian: unit_id=<unit_id> requirement=<requirement>` on its own line
+  inside the function, copying the item's unit_id and requirement exactly.
+* Import what you use. The test source must compile and be collectable by
+  pytest on its own.
+* Tests must never touch real external resources — no audio or video
+  devices, no network connections, no subprocesses, no GUI windows, no
+  writes outside pytest's tmp_path. Where the code under test opens such a
+  boundary (an audio stream, a socket, a server), stub that library with
+  unittest.mock BEFORE importing the module, and test the logic around the
+  boundary. A test that opens a real device can crash the whole suite.
+* Answer for every item you were given, and for no other item — ONE entry per
+  item. To write several test functions for an item (the checklist usually
+  wants several), put them all inside that item's single "source" string.
+
+Answer with JSON and nothing else, in this shape:
+
+{"tests": [{"unit_id": "<unit_id>", "requirement": "<requirement code or 'structural'>", "source": "<the test source>"}, ...]}
+
+GENERATION ITEMS (1):
+
+ITEM 1
+
+unit_id: ebf2a81ddbb1
+
+requirement: 1-2
+
+REQUIREMENT 1-2: Note Lifetime A note starts sounding on key-down and stops on key-up. Holding a key sustains its note; no re-pressing is required.
+
+stage-2 effect claim: stops a sounding note when the key is released
+
+stage-2 evidence snippet:
+if key in self._active:
+                voice = self._active.pop(key)
+                voice.note_off()
+
+FUNCTION python.audio_logic.NoteEngine.key_up (def key_up(self, key: str) -> None) at python/audio_logic.py:114-130
+
+IMPORT: the test directory's conftest puts this file's directory on sys.path — import the code under test as `from audio_logic import …` (or `import audio_logic`). Do not use any other import path and do not modify sys.path yourself.
+
+SOURCE:
+def key_up(self, key: str) -> None:
+        """Req 1.4: a note stops sounding on key-up; frees a slot for a pending key (Req 1.3)."""
+        events: list[tuple[str, bool]] = []
+        with self._lock:
+            if key in self._active:
+                voice = self._active.pop(key)
+                voice.note_off()
+                self._releasing.append(voice)
+                events.append((key, False))
+                if self._pending:
+                    next_key = self._pending.pop(0)
+                    self._active[next_key] = _Voice(next_key, frequency_for_key(next_key))
+                    events.append((next_key, True))
+            elif key in self._pending:
+                self._pending.remove(key)  # released while waiting; it never sounded
+        for changed_key, active in events:
+            self._emit(changed_key, active)
+
+STRUCTURAL OBLIGATIONS:
+- parameter 'key' (str) — exercise a representative value
+- parameter 'key' — cover the sequence boundaries: empty, one element, many elements
+- return — assert the result is None and has the expected value
+- cover the if branch at line 118
+- cover the if branch at line 123
+- cover the if branch at line 127
+- cover the loop body at line 129
+
+RESOURCE SAFETY PROFILE:
+These boundaries are present in the code under test. Isolate every one using its required strategy; do not call it directly.
+- hardware: matched sounddevice; required strategy: mock. Patch the symbol where the module under test looks it up; use a fake device response instead of real hardware.
+
+
+=== prompt 12 2026-08-25T04:11:29Z ===
+You are writing pytest unit tests for functions in an existing codebase.
+
+Below is one or more generation items. For each item you are given the
+function's source, its location, a checklist of structural obligations the
+tests should cover, and — for a mapped item — the requirement the function is
+supposed to satisfy. Write pytest test functions for each item.
+
+Rules:
+
+* Test the code as it is. If the code looks wrong, still write the test that
+  the requirement or the structure demands: a failing test is a finding, not a
+  mistake to write around.
+* Every test function you write must carry the comment
+  `# meridian: unit_id=<unit_id> requirement=<requirement>` on its own line
+  inside the function, copying the item's unit_id and requirement exactly.
+* Import what you use. The test source must compile and be collectable by
+  pytest on its own.
+* Tests must never touch real external resources — no audio or video
+  devices, no network connections, no subprocesses, no GUI windows, no
+  writes outside pytest's tmp_path. Where the code under test opens such a
+  boundary (an audio stream, a socket, a server), stub that library with
+  unittest.mock BEFORE importing the module, and test the logic around the
+  boundary. A test that opens a real device can crash the whole suite.
+* Answer for every item you were given, and for no other item — ONE entry per
+  item. To write several test functions for an item (the checklist usually
+  wants several), put them all inside that item's single "source" string.
+
+Answer with JSON and nothing else, in this shape:
+
+{"tests": [{"unit_id": "<unit_id>", "requirement": "<requirement code or 'structural'>", "source": "<the test source>"}, ...]}
+
+GENERATION ITEMS (1):
+
+ITEM 1
+
+unit_id: ebf2a81ddbb1
+
+requirement: 1-3
+
+REQUIREMENT 1-3: Polyphony Limit At most 3 notes sound simultaneously. A key pressed while 3 notes are sounding waits (if still held) and begins sounding as soon as a slot frees.
+
+stage-2 effect claim: When a key is released and a slot becomes available, the first pending key immediately begins sounding
+
+stage-2 evidence snippet:
+                if self._pending:
+                    next_key = self._pending.pop(0)
+                    self._active[next_key] = _Voice(next_key, frequency_for_key(next_key))
+                    events.append((next_key, True))
+
+FUNCTION python.audio_logic.NoteEngine.key_up (def key_up(self, key: str) -> None) at python/audio_logic.py:114-130
+
+IMPORT: the test directory's conftest puts this file's directory on sys.path — import the code under test as `from audio_logic import …` (or `import audio_logic`). Do not use any other import path and do not modify sys.path yourself.
+
+SOURCE:
+def key_up(self, key: str) -> None:
+        """Req 1.4: a note stops sounding on key-up; frees a slot for a pending key (Req 1.3)."""
+        events: list[tuple[str, bool]] = []
+        with self._lock:
+            if key in self._active:
+                voice = self._active.pop(key)
+                voice.note_off()
+                self._releasing.append(voice)
+                events.append((key, False))
+                if self._pending:
+                    next_key = self._pending.pop(0)
+                    self._active[next_key] = _Voice(next_key, frequency_for_key(next_key))
+                    events.append((next_key, True))
+            elif key in self._pending:
+                self._pending.remove(key)  # released while waiting; it never sounded
+        for changed_key, active in events:
+            self._emit(changed_key, active)
+
+STRUCTURAL OBLIGATIONS:
+- parameter 'key' (str) — exercise a representative value
+- parameter 'key' — cover the sequence boundaries: empty, one element, many elements
+- return — assert the result is None and has the expected value
+- cover the if branch at line 118
+- cover the if branch at line 123
+- cover the if branch at line 127
+- cover the loop body at line 129
+
+RESOURCE SAFETY PROFILE:
+These boundaries are present in the code under test. Isolate every one using its required strategy; do not call it directly.
+- hardware: matched sounddevice; required strategy: mock. Patch the symbol where the module under test looks it up; use a fake device response instead of real hardware.
+
+
+=== prompt 13 2026-08-25T04:11:57Z ===
+You are writing pytest unit tests for functions in an existing codebase.
+
+Below is one or more generation items. For each item you are given the
+function's source, its location, a checklist of structural obligations the
+tests should cover, and — for a mapped item — the requirement the function is
+supposed to satisfy. Write pytest test functions for each item.
+
+Rules:
+
+* Test the code as it is. If the code looks wrong, still write the test that
+  the requirement or the structure demands: a failing test is a finding, not a
+  mistake to write around.
+* Every test function you write must carry the comment
+  `# meridian: unit_id=<unit_id> requirement=<requirement>` on its own line
+  inside the function, copying the item's unit_id and requirement exactly.
+* Import what you use. The test source must compile and be collectable by
+  pytest on its own.
+* Tests must never touch real external resources — no audio or video
+  devices, no network connections, no subprocesses, no GUI windows, no
+  writes outside pytest's tmp_path. Where the code under test opens such a
+  boundary (an audio stream, a socket, a server), stub that library with
+  unittest.mock BEFORE importing the module, and test the logic around the
+  boundary. A test that opens a real device can crash the whole suite.
+* Answer for every item you were given, and for no other item — ONE entry per
+  item. To write several test functions for an item (the checklist usually
+  wants several), put them all inside that item's single "source" string.
+
+Answer with JSON and nothing else, in this shape:
+
+{"tests": [{"unit_id": "<unit_id>", "requirement": "<requirement code or 'structural'>", "source": "<the test source>"}, ...]}
+
+GENERATION ITEMS (1):
+
+ITEM 1
+
+unit_id: ebf2a81ddbb1
+
+requirement: 1-4
+
+REQUIREMENT 1-4: Latency Audible output begins within 20 ms of a key press, with no clicks or pops at note start or stop.
+
+stage-2 effect claim: stops notes smoothly via envelope release to prevent clicks/pops at note stop
+
+stage-2 evidence snippet:
+voice.note_off()
+                self._releasing.append(voice)
+
+FUNCTION python.audio_logic.NoteEngine.key_up (def key_up(self, key: str) -> None) at python/audio_logic.py:114-130
+
+IMPORT: the test directory's conftest puts this file's directory on sys.path — import the code under test as `from audio_logic import …` (or `import audio_logic`). Do not use any other import path and do not modify sys.path yourself.
+
+SOURCE:
+def key_up(self, key: str) -> None:
+        """Req 1.4: a note stops sounding on key-up; frees a slot for a pending key (Req 1.3)."""
+        events: list[tuple[str, bool]] = []
+        with self._lock:
+            if key in self._active:
+                voice = self._active.pop(key)
+                voice.note_off()
+                self._releasing.append(voice)
+                events.append((key, False))
+                if self._pending:
+                    next_key = self._pending.pop(0)
+                    self._active[next_key] = _Voice(next_key, frequency_for_key(next_key))
+                    events.append((next_key, True))
+            elif key in self._pending:
+                self._pending.remove(key)  # released while waiting; it never sounded
+        for changed_key, active in events:
+            self._emit(changed_key, active)
+
+STRUCTURAL OBLIGATIONS:
+- parameter 'key' (str) — exercise a representative value
+- parameter 'key' — cover the sequence boundaries: empty, one element, many elements
+- return — assert the result is None and has the expected value
+- cover the if branch at line 118
+- cover the if branch at line 123
+- cover the if branch at line 127
+- cover the loop body at line 129
+
+RESOURCE SAFETY PROFILE:
+These boundaries are present in the code under test. Isolate every one using its required strategy; do not call it directly.
+- hardware: matched sounddevice; required strategy: mock. Patch the symbol where the module under test looks it up; use a fake device response instead of real hardware.
+
+
+=== prompt 14 2026-08-25T04:12:39Z ===
+You are writing pytest unit tests for functions in an existing codebase.
+
+Below is one or more generation items. For each item you are given the
+function's source, its location, a checklist of structural obligations the
+tests should cover, and — for a mapped item — the requirement the function is
+supposed to satisfy. Write pytest test functions for each item.
+
+Rules:
+
+* Test the code as it is. If the code looks wrong, still write the test that
+  the requirement or the structure demands: a failing test is a finding, not a
+  mistake to write around.
+* Every test function you write must carry the comment
+  `# meridian: unit_id=<unit_id> requirement=<requirement>` on its own line
+  inside the function, copying the item's unit_id and requirement exactly.
+* Import what you use. The test source must compile and be collectable by
+  pytest on its own.
+* Tests must never touch real external resources — no audio or video
+  devices, no network connections, no subprocesses, no GUI windows, no
+  writes outside pytest's tmp_path. Where the code under test opens such a
+  boundary (an audio stream, a socket, a server), stub that library with
+  unittest.mock BEFORE importing the module, and test the logic around the
+  boundary. A test that opens a real device can crash the whole suite.
+* Answer for every item you were given, and for no other item — ONE entry per
+  item. To write several test functions for an item (the checklist usually
+  wants several), put them all inside that item's single "source" string.
+
+Answer with JSON and nothing else, in this shape:
+
+{"tests": [{"unit_id": "<unit_id>", "requirement": "<requirement code or 'structural'>", "source": "<the test source>"}, ...]}
+
+GENERATION ITEMS (1):
+
+ITEM 1
+
+unit_id: ebf2a81ddbb1
+
+requirement: 2-2
+
+REQUIREMENT 2-2: Pressed-Key Highlight While a key's note is sounding, its on-screen element is visibly highlighted; it returns to normal when the note stops. A key waiting on the polyphony limit (1.3) is not highlighted until it actually sounds.
+
+stage-2 effect claim: emits highlight=False when a sounding key stops, highlight=True when a pending key begins sounding, and no event for keys that were only pending
+
+stage-2 evidence snippet:
+                events.append((key, False))
+                if self._pending:
+                    next_key = self._pending.pop(0)
+                    self._active[next_key] = _Voice(next_key, frequency_for_key(next_key))
+                    events.append((next_key, True))
+            elif key in self._pending:
+                self._pending.remove(key)  # released while waiting; it never sounded
+        for changed_key, active in events:
+            self._emit(changed_key, active)
+
+FUNCTION python.audio_logic.NoteEngine.key_up (def key_up(self, key: str) -> None) at python/audio_logic.py:114-130
+
+IMPORT: the test directory's conftest puts this file's directory on sys.path — import the code under test as `from audio_logic import …` (or `import audio_logic`). Do not use any other import path and do not modify sys.path yourself.
+
+SOURCE:
+def key_up(self, key: str) -> None:
+        """Req 1.4: a note stops sounding on key-up; frees a slot for a pending key (Req 1.3)."""
+        events: list[tuple[str, bool]] = []
+        with self._lock:
+            if key in self._active:
+                voice = self._active.pop(key)
+                voice.note_off()
+                self._releasing.append(voice)
+                events.append((key, False))
+                if self._pending:
+                    next_key = self._pending.pop(0)
+                    self._active[next_key] = _Voice(next_key, frequency_for_key(next_key))
+                    events.append((next_key, True))
+            elif key in self._pending:
+                self._pending.remove(key)  # released while waiting; it never sounded
+        for changed_key, active in events:
+            self._emit(changed_key, active)
+
+STRUCTURAL OBLIGATIONS:
+- parameter 'key' (str) — exercise a representative value
+- parameter 'key' — cover the sequence boundaries: empty, one element, many elements
+- return — assert the result is None and has the expected value
+- cover the if branch at line 118
+- cover the if branch at line 123
+- cover the if branch at line 127
+- cover the loop body at line 129
+
+RESOURCE SAFETY PROFILE:
+These boundaries are present in the code under test. Isolate every one using its required strategy; do not call it directly.
+- hardware: matched sounddevice; required strategy: mock. Patch the symbol where the module under test looks it up; use a fake device response instead of real hardware.
+
+
+=== prompt 15 2026-08-25T04:13:01Z ===
+You are writing pytest unit tests for functions in an existing codebase.
+
+Below is one or more generation items. For each item you are given the
+function's source, its location, a checklist of structural obligations the
+tests should cover, and — for a mapped item — the requirement the function is
+supposed to satisfy. Write pytest test functions for each item.
+
+Rules:
+
+* Test the code as it is. If the code looks wrong, still write the test that
+  the requirement or the structure demands: a failing test is a finding, not a
+  mistake to write around.
+* Every test function you write must carry the comment
+  `# meridian: unit_id=<unit_id> requirement=<requirement>` on its own line
+  inside the function, copying the item's unit_id and requirement exactly.
+* Import what you use. The test source must compile and be collectable by
+  pytest on its own.
+* Tests must never touch real external resources — no audio or video
+  devices, no network connections, no subprocesses, no GUI windows, no
+  writes outside pytest's tmp_path. Where the code under test opens such a
+  boundary (an audio stream, a socket, a server), stub that library with
+  unittest.mock BEFORE importing the module, and test the logic around the
+  boundary. A test that opens a real device can crash the whole suite.
+* Answer for every item you were given, and for no other item — ONE entry per
+  item. To write several test functions for an item (the checklist usually
+  wants several), put them all inside that item's single "source" string.
+
+Answer with JSON and nothing else, in this shape:
+
+{"tests": [{"unit_id": "<unit_id>", "requirement": "<requirement code or 'structural'>", "source": "<the test source>"}, ...]}
+
+GENERATION ITEMS (1):
+
+ITEM 1
+
+unit_id: ebf2a81ddbb1
+
+requirement: 4-1
+
+REQUIREMENT 4-1: Shared Logic Note mapping, polyphony, and synthesis live in a single logic layer shared by all interfaces; interfaces only report raw key transitions and render the resulting state.
+
+stage-2 effect claim: Manages shared polyphony and synthesis state in response to raw key-up transitions, then emits resulting state changes for interfaces to render via _emit
+
+stage-2 evidence snippet:
+        events: list[tuple[str, bool]] = []
+        with self._lock:
+            if key in self._active:
+                voice = self._active.pop(key)
+                voice.note_off()
+                self._releasing.append(voice)
+                events.append((key, False))
+                if self._pending:
+                    next_key = self._pending.pop(0)
+                    self._active[next_key] = _Voice(next_key, frequency_for_key(next_key))
+                    events.append((next_key, True))
+            elif key in self._pending:
+                self._pending.remove(key)  # released while waiting; it never sounded
+        for changed_key, active in events:
+            self._emit(changed_key, active)
+
+FUNCTION python.audio_logic.NoteEngine.key_up (def key_up(self, key: str) -> None) at python/audio_logic.py:114-130
+
+IMPORT: the test directory's conftest puts this file's directory on sys.path — import the code under test as `from audio_logic import …` (or `import audio_logic`). Do not use any other import path and do not modify sys.path yourself.
+
+SOURCE:
+def key_up(self, key: str) -> None:
+        """Req 1.4: a note stops sounding on key-up; frees a slot for a pending key (Req 1.3)."""
+        events: list[tuple[str, bool]] = []
+        with self._lock:
+            if key in self._active:
+                voice = self._active.pop(key)
+                voice.note_off()
+                self._releasing.append(voice)
+                events.append((key, False))
+                if self._pending:
+                    next_key = self._pending.pop(0)
+                    self._active[next_key] = _Voice(next_key, frequency_for_key(next_key))
+                    events.append((next_key, True))
+            elif key in self._pending:
+                self._pending.remove(key)  # released while waiting; it never sounded
+        for changed_key, active in events:
+            self._emit(changed_key, active)
+
+STRUCTURAL OBLIGATIONS:
+- parameter 'key' (str) — exercise a representative value
+- parameter 'key' — cover the sequence boundaries: empty, one element, many elements
+- return — assert the result is None and has the expected value
+- cover the if branch at line 118
+- cover the if branch at line 123
+- cover the if branch at line 127
+- cover the loop body at line 129
+
+RESOURCE SAFETY PROFILE:
+These boundaries are present in the code under test. Isolate every one using its required strategy; do not call it directly.
+- hardware: matched sounddevice; required strategy: mock. Patch the symbol where the module under test looks it up; use a fake device response instead of real hardware.
+
+
+=== prompt 16 2026-08-25T04:13:36Z ===
+You are writing pytest unit tests for functions in an existing codebase.
+
+Below is one or more generation items. For each item you are given the
+function's source, its location, a checklist of structural obligations the
+tests should cover, and — for a mapped item — the requirement the function is
+supposed to satisfy. Write pytest test functions for each item.
+
+Rules:
+
+* Test the code as it is. If the code looks wrong, still write the test that
+  the requirement or the structure demands: a failing test is a finding, not a
+  mistake to write around.
+* Every test function you write must carry the comment
+  `# meridian: unit_id=<unit_id> requirement=<requirement>` on its own line
+  inside the function, copying the item's unit_id and requirement exactly.
+* Import what you use. The test source must compile and be collectable by
+  pytest on its own.
+* Tests must never touch real external resources — no audio or video
+  devices, no network connections, no subprocesses, no GUI windows, no
+  writes outside pytest's tmp_path. Where the code under test opens such a
+  boundary (an audio stream, a socket, a server), stub that library with
+  unittest.mock BEFORE importing the module, and test the logic around the
+  boundary. A test that opens a real device can crash the whole suite.
+* Answer for every item you were given, and for no other item — ONE entry per
+  item. To write several test functions for an item (the checklist usually
+  wants several), put them all inside that item's single "source" string.
+
+Answer with JSON and nothing else, in this shape:
+
+{"tests": [{"unit_id": "<unit_id>", "requirement": "<requirement code or 'structural'>", "source": "<the test source>"}, ...]}
+
+GENERATION ITEMS (1):
+
+ITEM 1
+
+unit_id: 1e58d228707f
+
+requirement: 2-2
+
+REQUIREMENT 2-2: Pressed-Key Highlight While a key's note is sounding, its on-screen element is visibly highlighted; it returns to normal when the note stops. A key waiting on the polyphony limit (1.3) is not highlighted until it actually sounds.
+
+stage-2 effect claim: sends note state changes to the frontend when keys start or stop sounding, enabling on-screen key highlighting
+
+stage-2 evidence snippet:
+engine = NoteEngine(on_state_change=_send_note_state)
+
+FUNCTION python.bridge_server.run (def run() -> None) at python/bridge_server.py:46-68
+
+IMPORT: the test directory's conftest puts this file's directory on sys.path — import the code under test as `from bridge_server import …` (or `import bridge_server`). Do not use any other import path and do not modify sys.path yourself.
+
+SOURCE:
+def run() -> None:
+    engine = NoteEngine(on_state_change=_send_note_state)
+    _send_colors()
+
+    try:
+        for line in sys.stdin:
+            line = line.strip()
+            if not line:
+                continue
+            try:
+                message = json.loads(line)
+            except json.JSONDecodeError:
+                print(f"bridge_server: ignoring malformed line: {line!r}", file=sys.stderr)
+                continue
+
+            message_type = message.get("type")
+            key = message.get("key")
+            if message_type == "key_down" and key:
+                engine.key_down(key)
+            elif message_type == "key_up" and key:
+                engine.key_up(key)
+    finally:
+        engine.close()
+
+STRUCTURAL OBLIGATIONS:
+- return — assert the result is None and has the expected value
+- cover the try body at line 50
+- cover the finally block at line 50
+- cover the loop body at line 51
+- cover the if branch at line 53
+- cover the try body at line 55
+- cover the except json.JSONDecodeError handler at line 57
+- cover the if branch at line 63
+- cover the if branch at line 65
+
+
+=== prompt 17 2026-08-25T04:14:02Z ===
+You are writing pytest unit tests for functions in an existing codebase.
+
+Below is one or more generation items. For each item you are given the
+function's source, its location, a checklist of structural obligations the
+tests should cover, and — for a mapped item — the requirement the function is
+supposed to satisfy. Write pytest test functions for each item.
+
+Rules:
+
+* Test the code as it is. If the code looks wrong, still write the test that
+  the requirement or the structure demands: a failing test is a finding, not a
+  mistake to write around.
+* Every test function you write must carry the comment
+  `# meridian: unit_id=<unit_id> requirement=<requirement>` on its own line
+  inside the function, copying the item's unit_id and requirement exactly.
+* Import what you use. The test source must compile and be collectable by
+  pytest on its own.
+* Tests must never touch real external resources — no audio or video
+  devices, no network connections, no subprocesses, no GUI windows, no
+  writes outside pytest's tmp_path. Where the code under test opens such a
+  boundary (an audio stream, a socket, a server), stub that library with
+  unittest.mock BEFORE importing the module, and test the logic around the
+  boundary. A test that opens a real device can crash the whole suite.
+* Answer for every item you were given, and for no other item — ONE entry per
+  item. To write several test functions for an item (the checklist usually
+  wants several), put them all inside that item's single "source" string.
+
+Answer with JSON and nothing else, in this shape:
+
+{"tests": [{"unit_id": "<unit_id>", "requirement": "<requirement code or 'structural'>", "source": "<the test source>"}, ...]}
+
+GENERATION ITEMS (1):
+
+ITEM 1
+
+unit_id: 91eed18d1cf2
+
+requirement: 1-1
+
+REQUIREMENT 1-1: Key-to-Note Mapping Ten playable keys — A, S, D, F, G and J, K, L, ;, ' — each map to one note of a major pentatonic scale, in ascending pitch order from left to right. The second group (J through ') sounds one octave above the first.
+
+stage-2 effect claim: returns the 10 playable keys in left-to-right order, establishing the sequence foundation for ascending pitch mapping
+
+stage-2 evidence snippet:
+return KEY_ORDER
+
+FUNCTION python.key_mapping.key_order (def key_order() -> tuple[str, ...]) at python/key_mapping.py:64-66
+
+IMPORT: the test directory's conftest puts this file's directory on sys.path — import the code under test as `from key_mapping import …` (or `import key_mapping`). Do not use any other import path and do not modify sys.path yourself.
+
+SOURCE:
+def key_order() -> tuple[str, ...]:
+    """The 10 playable keys, left to right (Req 2.1 ordering, 2.3 assignment order)."""
+    return KEY_ORDER
+
+STRUCTURAL OBLIGATIONS:
+- return — assert the result is tuple[str, ...] and has the expected value
+
+
+=== prompt 18 2026-08-25T04:14:11Z ===
+You are writing pytest unit tests for functions in an existing codebase.
+
+Below is one or more generation items. For each item you are given the
+function's source, its location, a checklist of structural obligations the
+tests should cover, and — for a mapped item — the requirement the function is
+supposed to satisfy. Write pytest test functions for each item.
+
+Rules:
+
+* Test the code as it is. If the code looks wrong, still write the test that
+  the requirement or the structure demands: a failing test is a finding, not a
+  mistake to write around.
+* Every test function you write must carry the comment
+  `# meridian: unit_id=<unit_id> requirement=<requirement>` on its own line
+  inside the function, copying the item's unit_id and requirement exactly.
+* Import what you use. The test source must compile and be collectable by
+  pytest on its own.
+* Tests must never touch real external resources — no audio or video
+  devices, no network connections, no subprocesses, no GUI windows, no
+  writes outside pytest's tmp_path. Where the code under test opens such a
+  boundary (an audio stream, a socket, a server), stub that library with
+  unittest.mock BEFORE importing the module, and test the logic around the
+  boundary. A test that opens a real device can crash the whole suite.
+* Answer for every item you were given, and for no other item — ONE entry per
+  item. To write several test functions for an item (the checklist usually
+  wants several), put them all inside that item's single "source" string.
+
+Answer with JSON and nothing else, in this shape:
+
+{"tests": [{"unit_id": "<unit_id>", "requirement": "<requirement code or 'structural'>", "source": "<the test source>"}, ...]}
+
+GENERATION ITEMS (1):
+
+ITEM 1
+
+unit_id: 49f098c7f77f
+
+requirement: 1-1
+
+REQUIREMENT 1-1: Key-to-Note Mapping Ten playable keys — A, S, D, F, G and J, K, L, ;, ' — each map to one note of a major pentatonic scale, in ascending pitch order from left to right. The second group (J through ') sounds one octave above the first.
+
+stage-2 effect claim: returns the frequency in Hz assigned to the given key from the key-to-frequency mapping
+
+stage-2 evidence snippet:
+return _FREQUENCY_BY_KEY[key]
+
+FUNCTION python.key_mapping.frequency_for_key (def frequency_for_key(key: str) -> float) at python/key_mapping.py:69-71
+
+IMPORT: the test directory's conftest puts this file's directory on sys.path — import the code under test as `from key_mapping import …` (or `import key_mapping`). Do not use any other import path and do not modify sys.path yourself.
+
+SOURCE:
+def frequency_for_key(key: str) -> float:
+    """The pitch, in Hz, assigned to `key` (Req 1.1, 1.2)."""
+    return _FREQUENCY_BY_KEY[key]
+
+STRUCTURAL OBLIGATIONS:
+- parameter 'key' (str) — exercise a representative value
+- parameter 'key' — cover the sequence boundaries: empty, one element, many elements
+- return — assert the result is float and has the expected value
+
+
+=== prompt 19 2026-08-25T04:14:34Z ===
+You are writing pytest unit tests for functions in an existing codebase.
+
+Below is one or more generation items. For each item you are given the
+function's source, its location, a checklist of structural obligations the
+tests should cover, and — for a mapped item — the requirement the function is
+supposed to satisfy. Write pytest test functions for each item.
+
+Rules:
+
+* Test the code as it is. If the code looks wrong, still write the test that
+  the requirement or the structure demands: a failing test is a finding, not a
+  mistake to write around.
+* Every test function you write must carry the comment
+  `# meridian: unit_id=<unit_id> requirement=<requirement>` on its own line
+  inside the function, copying the item's unit_id and requirement exactly.
+* Import what you use. The test source must compile and be collectable by
+  pytest on its own.
+* Tests must never touch real external resources — no audio or video
+  devices, no network connections, no subprocesses, no GUI windows, no
+  writes outside pytest's tmp_path. Where the code under test opens such a
+  boundary (an audio stream, a socket, a server), stub that library with
+  unittest.mock BEFORE importing the module, and test the logic around the
+  boundary. A test that opens a real device can crash the whole suite.
+* Answer for every item you were given, and for no other item — ONE entry per
+  item. To write several test functions for an item (the checklist usually
+  wants several), put them all inside that item's single "source" string.
+
+Answer with JSON and nothing else, in this shape:
+
+{"tests": [{"unit_id": "<unit_id>", "requirement": "<requirement code or 'structural'>", "source": "<the test source>"}, ...]}
+
+GENERATION ITEMS (1):
+
+ITEM 1
+
+unit_id: 49f098c7f77f
+
+requirement: 4-1
+
+REQUIREMENT 4-1: Shared Logic Note mapping, polyphony, and synthesis live in a single logic layer shared by all interfaces; interfaces only report raw key transitions and render the resulting state.
+
+stage-2 effect claim: maps keys to frequencies via a shared dictionary, centralizing note mapping logic outside of interface code
+
+stage-2 evidence snippet:
+return _FREQUENCY_BY_KEY[key]
+
+FUNCTION python.key_mapping.frequency_for_key (def frequency_for_key(key: str) -> float) at python/key_mapping.py:69-71
+
+IMPORT: the test directory's conftest puts this file's directory on sys.path — import the code under test as `from key_mapping import …` (or `import key_mapping`). Do not use any other import path and do not modify sys.path yourself.
+
+SOURCE:
+def frequency_for_key(key: str) -> float:
+    """The pitch, in Hz, assigned to `key` (Req 1.1, 1.2)."""
+    return _FREQUENCY_BY_KEY[key]
+
+STRUCTURAL OBLIGATIONS:
+- parameter 'key' (str) — exercise a representative value
+- parameter 'key' — cover the sequence boundaries: empty, one element, many elements
+- return — assert the result is float and has the expected value
+
+
+=== prompt 20 2026-08-25T04:14:50Z ===
+You are writing pytest unit tests for functions in an existing codebase.
+
+Below is one or more generation items. For each item you are given the
+function's source, its location, a checklist of structural obligations the
+tests should cover, and — for a mapped item — the requirement the function is
+supposed to satisfy. Write pytest test functions for each item.
+
+Rules:
+
+* Test the code as it is. If the code looks wrong, still write the test that
+  the requirement or the structure demands: a failing test is a finding, not a
+  mistake to write around.
+* Every test function you write must carry the comment
+  `# meridian: unit_id=<unit_id> requirement=<requirement>` on its own line
+  inside the function, copying the item's unit_id and requirement exactly.
+* Import what you use. The test source must compile and be collectable by
+  pytest on its own.
+* Tests must never touch real external resources — no audio or video
+  devices, no network connections, no subprocesses, no GUI windows, no
+  writes outside pytest's tmp_path. Where the code under test opens such a
+  boundary (an audio stream, a socket, a server), stub that library with
+  unittest.mock BEFORE importing the module, and test the logic around the
+  boundary. A test that opens a real device can crash the whole suite.
+* Answer for every item you were given, and for no other item — ONE entry per
+  item. To write several test functions for an item (the checklist usually
+  wants several), put them all inside that item's single "source" string.
+
+Answer with JSON and nothing else, in this shape:
+
+{"tests": [{"unit_id": "<unit_id>", "requirement": "<requirement code or 'structural'>", "source": "<the test source>"}, ...]}
+
+GENERATION ITEMS (1):
+
+ITEM 1
+
+unit_id: db835681b862
+
+requirement: 2-3
+
+REQUIREMENT 2-3: Colors Keys are colored following the ROYGBIV sequence, repeating as needed, assigned left to right.
+
+stage-2 effect claim: Returns the ROYGBIV hex color assigned to a key
+
+stage-2 evidence snippet:
+return _COLOR_BY_KEY[key]
+
+FUNCTION python.key_mapping.color_for_key (def color_for_key(key: str) -> str) at python/key_mapping.py:74-76
+
+IMPORT: the test directory's conftest puts this file's directory on sys.path — import the code under test as `from key_mapping import …` (or `import key_mapping`). Do not use any other import path and do not modify sys.path yourself.
+
+SOURCE:
+def color_for_key(key: str) -> str:
+    """The ROYGBIV hex color assigned to `key` (Req 2.3)."""
+    return _COLOR_BY_KEY[key]
+
+STRUCTURAL OBLIGATIONS:
+- parameter 'key' (str) — exercise a representative value
+- parameter 'key' — cover the sequence boundaries: empty, one element, many elements
+- return — assert the result is str and has the expected value
+
+
+=== prompt 21 2026-08-25T04:15:15Z ===
+You are writing pytest unit tests for functions in an existing codebase.
+
+Below is one or more generation items. For each item you are given the
+function's source, its location, a checklist of structural obligations the
+tests should cover, and — for a mapped item — the requirement the function is
+supposed to satisfy. Write pytest test functions for each item.
+
+Rules:
+
+* Test the code as it is. If the code looks wrong, still write the test that
+  the requirement or the structure demands: a failing test is a finding, not a
+  mistake to write around.
+* Every test function you write must carry the comment
+  `# meridian: unit_id=<unit_id> requirement=<requirement>` on its own line
+  inside the function, copying the item's unit_id and requirement exactly.
+* Import what you use. The test source must compile and be collectable by
+  pytest on its own.
+* Tests must never touch real external resources — no audio or video
+  devices, no network connections, no subprocesses, no GUI windows, no
+  writes outside pytest's tmp_path. Where the code under test opens such a
+  boundary (an audio stream, a socket, a server), stub that library with
+  unittest.mock BEFORE importing the module, and test the logic around the
+  boundary. A test that opens a real device can crash the whole suite.
+* Answer for every item you were given, and for no other item — ONE entry per
+  item. To write several test functions for an item (the checklist usually
+  wants several), put them all inside that item's single "source" string.
+
+Answer with JSON and nothing else, in this shape:
+
+{"tests": [{"unit_id": "<unit_id>", "requirement": "<requirement code or 'structural'>", "source": "<the test source>"}, ...]}
+
+GENERATION ITEMS (1):
+
+ITEM 1
+
+unit_id: a864070f5097
+
+requirement: structural
+
+This item is structural: no requirement is assigned to it. Before writing,
+read the codebase you have access to — find this function's callers and the
+module around it — and derive from that context what the function is for and
+what must hold of it.
+
+FUNCTION python.key_mapping.all_colors (def all_colors() -> tuple[str, ...]) at python/key_mapping.py:79-81
+
+IMPORT: the test directory's conftest puts this file's directory on sys.path — import the code under test as `from key_mapping import …` (or `import key_mapping`). Do not use any other import path and do not modify sys.path yourself.
+
+SOURCE:
+def all_colors() -> tuple[str, ...]:
+    """Colors for all keys, in the same order as `key_order()`."""
+    return tuple(_COLOR_BY_KEY[key] for key in KEY_ORDER)
+
+STRUCTURAL OBLIGATIONS:
+- return — assert the result is tuple[str, ...] and has the expected value
+
+
+=== prompt 22 2026-08-25T04:15:32Z ===
+You are writing pytest unit tests for functions in an existing codebase.
+
+Below is one or more generation items. For each item you are given the
+function's source, its location, a checklist of structural obligations the
+tests should cover, and — for a mapped item — the requirement the function is
+supposed to satisfy. Write pytest test functions for each item.
+
+Rules:
+
+* Test the code as it is. If the code looks wrong, still write the test that
+  the requirement or the structure demands: a failing test is a finding, not a
+  mistake to write around.
+* Every test function you write must carry the comment
+  `# meridian: unit_id=<unit_id> requirement=<requirement>` on its own line
+  inside the function, copying the item's unit_id and requirement exactly.
+* Import what you use. The test source must compile and be collectable by
+  pytest on its own.
+* Tests must never touch real external resources — no audio or video
+  devices, no network connections, no subprocesses, no GUI windows, no
+  writes outside pytest's tmp_path. Where the code under test opens such a
+  boundary (an audio stream, a socket, a server), stub that library with
+  unittest.mock BEFORE importing the module, and test the logic around the
+  boundary. A test that opens a real device can crash the whole suite.
+* Answer for every item you were given, and for no other item — ONE entry per
+  item. To write several test functions for an item (the checklist usually
+  wants several), put them all inside that item's single "source" string.
+
+Answer with JSON and nothing else, in this shape:
+
+{"tests": [{"unit_id": "<unit_id>", "requirement": "<requirement code or 'structural'>", "source": "<the test source>"}, ...]}
+
+GENERATION ITEMS (1):
+
+ITEM 1
+
+unit_id: 28faeb62248a
+
+requirement: 2-1
+
+REQUIREMENT 2-1: Key Display All 10 playable keys are shown on screen in physical keyboard order, each in its assigned color, with a visible gap between the two octave groups.
+
+stage-2 effect claim: Renders the key display interface on screen by invoking the draw routine
+
+stage-2 evidence snippet:
+    print("Rainbow Keys (text mode) -- hold A S D F G / J K L ; ' to play\n")
+    _draw(active)
+
+FUNCTION python.tui.main (def main() -> None) at python/tui.py:56-93
+
+IMPORT: the test directory's conftest puts this file's directory on sys.path — import the code under test as `from tui import …` (or `import tui`). Do not use any other import path and do not modify sys.path yourself.
+
+SOURCE:
+def main() -> None:
+    active: set[str] = set()  # keys we consider held (UI mirror of engine state)
+    last_seen: dict[str, float] = {}
+
+    def on_state_change(key: str, is_active: bool) -> None:
+        if is_active:
+            active.add(key)
+        else:
+            active.discard(key)
+        _draw(active)
+
+    engine = NoteEngine(on_state_change=on_state_change)
+    fd = sys.stdin.fileno()
+    saved = termios.tcgetattr(fd)
+    tty.setcbreak(fd)
+    print("Rainbow Keys (text mode) -- hold A S D F G / J K L ; ' to play\n")
+    _draw(active)
+    try:
+        while True:
+            ready, _, _ = select.select([sys.stdin], [], [], 0.03)
+            now = time.monotonic()
+            if ready:
+                ch = sys.stdin.read(1).lower()
+                if ch == "q":
+                    break
+                key = _CHAR_TO_KEY.get(ch)
+                if key:
+                    if key not in last_seen:
+                        engine.key_down(key)
+                    last_seen[key] = now
+            for key, seen in list(last_seen.items()):
+                if now - seen > RELEASE_TIMEOUT_SECONDS:
+                    del last_seen[key]
+                    engine.key_up(key)
+    finally:
+        termios.tcsetattr(fd, termios.TCSADRAIN, saved)
+        engine.close()
+        print()
+
+STRUCTURAL OBLIGATIONS:
+- return — assert the result is None and has the expected value
+- cover the try body at line 73
+- cover the finally block at line 73
+- cover the loop body at line 74
+- cover the if branch at line 77
+- cover the if branch at line 79
+- cover the if branch at line 82
+- cover the if branch at line 83
+- cover the loop body at line 86
+- cover the if branch at line 87
+
+
+=== prompt 23 2026-08-25T04:16:46Z ===
+You are writing pytest unit tests for functions in an existing codebase.
+
+Below is one or more generation items. For each item you are given the
+function's source, its location, a checklist of structural obligations the
+tests should cover, and — for a mapped item — the requirement the function is
+supposed to satisfy. Write pytest test functions for each item.
+
+Rules:
+
+* Test the code as it is. If the code looks wrong, still write the test that
+  the requirement or the structure demands: a failing test is a finding, not a
+  mistake to write around.
+* Every test function you write must carry the comment
+  `# meridian: unit_id=<unit_id> requirement=<requirement>` on its own line
+  inside the function, copying the item's unit_id and requirement exactly.
+* Import what you use. The test source must compile and be collectable by
+  pytest on its own.
+* Tests must never touch real external resources — no audio or video
+  devices, no network connections, no subprocesses, no GUI windows, no
+  writes outside pytest's tmp_path. Where the code under test opens such a
+  boundary (an audio stream, a socket, a server), stub that library with
+  unittest.mock BEFORE importing the module, and test the logic around the
+  boundary. A test that opens a real device can crash the whole suite.
+* Answer for every item you were given, and for no other item — ONE entry per
+  item. To write several test functions for an item (the checklist usually
+  wants several), put them all inside that item's single "source" string.
+
+Answer with JSON and nothing else, in this shape:
+
+{"tests": [{"unit_id": "<unit_id>", "requirement": "<requirement code or 'structural'>", "source": "<the test source>"}, ...]}
+
+GENERATION ITEMS (1):
+
+ITEM 1
+
+unit_id: 28faeb62248a
+
+requirement: 2-2
+
+REQUIREMENT 2-2: Pressed-Key Highlight While a key's note is sounding, its on-screen element is visibly highlighted; it returns to normal when the note stops. A key waiting on the polyphony limit (1.3) is not highlighted until it actually sounds.
+
+stage-2 effect claim: Highlights keys by updating an active set via the engine's state change callback and redrawing the UI, ensuring only actually-sounding notes are highlighted
+
+stage-2 evidence snippet:
+def on_state_change(key: str, is_active: bool) -> None:
+        if is_active:
+            active.add(key)
+        else:
+            active.discard(key)
+        _draw(active)
+
+    engine = NoteEngine(on_state_change=on_state_change)
+
+FUNCTION python.tui.main (def main() -> None) at python/tui.py:56-93
+
+IMPORT: the test directory's conftest puts this file's directory on sys.path — import the code under test as `from tui import …` (or `import tui`). Do not use any other import path and do not modify sys.path yourself.
+
+SOURCE:
+def main() -> None:
+    active: set[str] = set()  # keys we consider held (UI mirror of engine state)
+    last_seen: dict[str, float] = {}
+
+    def on_state_change(key: str, is_active: bool) -> None:
+        if is_active:
+            active.add(key)
+        else:
+            active.discard(key)
+        _draw(active)
+
+    engine = NoteEngine(on_state_change=on_state_change)
+    fd = sys.stdin.fileno()
+    saved = termios.tcgetattr(fd)
+    tty.setcbreak(fd)
+    print("Rainbow Keys (text mode) -- hold A S D F G / J K L ; ' to play\n")
+    _draw(active)
+    try:
+        while True:
+            ready, _, _ = select.select([sys.stdin], [], [], 0.03)
+            now = time.monotonic()
+            if ready:
+                ch = sys.stdin.read(1).lower()
+                if ch == "q":
+                    break
+                key = _CHAR_TO_KEY.get(ch)
+                if key:
+                    if key not in last_seen:
+                        engine.key_down(key)
+                    last_seen[key] = now
+            for key, seen in list(last_seen.items()):
+                if now - seen > RELEASE_TIMEOUT_SECONDS:
+                    del last_seen[key]
+                    engine.key_up(key)
+    finally:
+        termios.tcsetattr(fd, termios.TCSADRAIN, saved)
+        engine.close()
+        print()
+
+STRUCTURAL OBLIGATIONS:
+- return — assert the result is None and has the expected value
+- cover the try body at line 73
+- cover the finally block at line 73
+- cover the loop body at line 74
+- cover the if branch at line 77
+- cover the if branch at line 79
+- cover the if branch at line 82
+- cover the if branch at line 83
+- cover the loop body at line 86
+- cover the if branch at line 87
+
+
+=== prompt 24 2026-08-25T04:17:48Z ===
+You are writing pytest unit tests for functions in an existing codebase.
+
+Below is one or more generation items. For each item you are given the
+function's source, its location, a checklist of structural obligations the
+tests should cover, and — for a mapped item — the requirement the function is
+supposed to satisfy. Write pytest test functions for each item.
+
+Rules:
+
+* Test the code as it is. If the code looks wrong, still write the test that
+  the requirement or the structure demands: a failing test is a finding, not a
+  mistake to write around.
+* Every test function you write must carry the comment
+  `# meridian: unit_id=<unit_id> requirement=<requirement>` on its own line
+  inside the function, copying the item's unit_id and requirement exactly.
+* Import what you use. The test source must compile and be collectable by
+  pytest on its own.
+* Tests must never touch real external resources — no audio or video
+  devices, no network connections, no subprocesses, no GUI windows, no
+  writes outside pytest's tmp_path. Where the code under test opens such a
+  boundary (an audio stream, a socket, a server), stub that library with
+  unittest.mock BEFORE importing the module, and test the logic around the
+  boundary. A test that opens a real device can crash the whole suite.
+* Answer for every item you were given, and for no other item — ONE entry per
+  item. To write several test functions for an item (the checklist usually
+  wants several), put them all inside that item's single "source" string.
+
+Answer with JSON and nothing else, in this shape:
+
+{"tests": [{"unit_id": "<unit_id>", "requirement": "<requirement code or 'structural'>", "source": "<the test source>"}, ...]}
+
+GENERATION ITEMS (1):
+
+ITEM 1
+
+unit_id: 28faeb62248a
+
+requirement: 3-2
+
+REQUIREMENT 3-2: Text Interface (TUI) A text-only terminal interface offers the same instrument: it plays sound when user presses keys, and highlights via TUI to show the end user which key is pressed. It reuses the same sound logic as the graphical interface; only presentation differs.
+
+stage-2 effect claim: plays sound via NoteEngine when keys are pressed and updates TUI display to highlight active keys through the on_state_change callback
+
+stage-2 evidence snippet:
+def on_state_change(key: str, is_active: bool) -> None:
+        if is_active:
+            active.add(key)
+        else:
+            active.discard(key)
+        _draw(active)
+
+    engine = NoteEngine(on_state_change=on_state_change)
+    fd = sys.stdin.fileno()
+    saved = termios.tcgetattr(fd)
+    tty.setcbreak(fd)
+    print("Rainbow Keys (text mode) -- hold A S D F G / J K L ; ' to play\n")
+    _draw(active)
+    try:
+        while True:
+            ready, _, _ = select.select([sys.stdin], [], [], 0.03)
+            now = time.monotonic()
+            if ready:
+                ch = sys.stdin.read(1).lower()
+                if ch == "q":
+                    break
+                key = _CHAR_TO_KEY.get(ch)
+                if key:
+                    if key not in last_seen:
+                        engine.key_down(key)
+                    last_seen[key] = now
+
+FUNCTION python.tui.main (def main() -> None) at python/tui.py:56-93
+
+IMPORT: the test directory's conftest puts this file's directory on sys.path — import the code under test as `from tui import …` (or `import tui`). Do not use any other import path and do not modify sys.path yourself.
+
+SOURCE:
+def main() -> None:
+    active: set[str] = set()  # keys we consider held (UI mirror of engine state)
+    last_seen: dict[str, float] = {}
+
+    def on_state_change(key: str, is_active: bool) -> None:
+        if is_active:
+            active.add(key)
+        else:
+            active.discard(key)
+        _draw(active)
+
+    engine = NoteEngine(on_state_change=on_state_change)
+    fd = sys.stdin.fileno()
+    saved = termios.tcgetattr(fd)
+    tty.setcbreak(fd)
+    print("Rainbow Keys (text mode) -- hold A S D F G / J K L ; ' to play\n")
+    _draw(active)
+    try:
+        while True:
+            ready, _, _ = select.select([sys.stdin], [], [], 0.03)
+            now = time.monotonic()
+            if ready:
+                ch = sys.stdin.read(1).lower()
+                if ch == "q":
+                    break
+                key = _CHAR_TO_KEY.get(ch)
+                if key:
+                    if key not in last_seen:
+                        engine.key_down(key)
+                    last_seen[key] = now
+            for key, seen in list(last_seen.items()):
+                if now - seen > RELEASE_TIMEOUT_SECONDS:
+                    del last_seen[key]
+                    engine.key_up(key)
+    finally:
+        termios.tcsetattr(fd, termios.TCSADRAIN, saved)
+        engine.close()
+        print()
+
+STRUCTURAL OBLIGATIONS:
+- return — assert the result is None and has the expected value
+- cover the try body at line 73
+- cover the finally block at line 73
+- cover the loop body at line 74
+- cover the if branch at line 77
+- cover the if branch at line 79
+- cover the if branch at line 82
+- cover the if branch at line 83
+- cover the loop body at line 86
+- cover the if branch at line 87
+
+
+=== prompt 25 2026-08-25T04:18:48Z ===
+You are writing pytest unit tests for functions in an existing codebase.
+
+Below is one or more generation items. For each item you are given the
+function's source, its location, a checklist of structural obligations the
+tests should cover, and — for a mapped item — the requirement the function is
+supposed to satisfy. Write pytest test functions for each item.
+
+Rules:
+
+* Test the code as it is. If the code looks wrong, still write the test that
+  the requirement or the structure demands: a failing test is a finding, not a
+  mistake to write around.
+* Every test function you write must carry the comment
+  `# meridian: unit_id=<unit_id> requirement=<requirement>` on its own line
+  inside the function, copying the item's unit_id and requirement exactly.
+* Import what you use. The test source must compile and be collectable by
+  pytest on its own.
+* Tests must never touch real external resources — no audio or video
+  devices, no network connections, no subprocesses, no GUI windows, no
+  writes outside pytest's tmp_path. Where the code under test opens such a
+  boundary (an audio stream, a socket, a server), stub that library with
+  unittest.mock BEFORE importing the module, and test the logic around the
+  boundary. A test that opens a real device can crash the whole suite.
+* Answer for every item you were given, and for no other item — ONE entry per
+  item. To write several test functions for an item (the checklist usually
+  wants several), put them all inside that item's single "source" string.
+
+Answer with JSON and nothing else, in this shape:
+
+{"tests": [{"unit_id": "<unit_id>", "requirement": "<requirement code or 'structural'>", "source": "<the test source>"}, ...]}
+
+GENERATION ITEMS (1):
+
+ITEM 1
+
+unit_id: 28faeb62248a
+
+requirement: 3-3
+
+REQUIREMENT 3-3: TUI Release Approximation Because terminals do not report key-release events, the TUI may treat a key as released after a short interval (≤ 0.6 s) without auto-repeat input for it. This is the only permitted deviation from 1.2.
+
+stage-2 effect claim: After RELEASE_TIMEOUT_SECONDS without receiving input for a key, the function calls engine.key_up(key) to treat it as released
+
+stage-2 evidence snippet:
+for key, seen in list(last_seen.items()):
+                if now - seen > RELEASE_TIMEOUT_SECONDS:
+                    del last_seen[key]
+                    engine.key_up(key)
+
+FUNCTION python.tui.main (def main() -> None) at python/tui.py:56-93
+
+IMPORT: the test directory's conftest puts this file's directory on sys.path — import the code under test as `from tui import …` (or `import tui`). Do not use any other import path and do not modify sys.path yourself.
+
+SOURCE:
+def main() -> None:
+    active: set[str] = set()  # keys we consider held (UI mirror of engine state)
+    last_seen: dict[str, float] = {}
+
+    def on_state_change(key: str, is_active: bool) -> None:
+        if is_active:
+            active.add(key)
+        else:
+            active.discard(key)
+        _draw(active)
+
+    engine = NoteEngine(on_state_change=on_state_change)
+    fd = sys.stdin.fileno()
+    saved = termios.tcgetattr(fd)
+    tty.setcbreak(fd)
+    print("Rainbow Keys (text mode) -- hold A S D F G / J K L ; ' to play\n")
+    _draw(active)
+    try:
+        while True:
+            ready, _, _ = select.select([sys.stdin], [], [], 0.03)
+            now = time.monotonic()
+            if ready:
+                ch = sys.stdin.read(1).lower()
+                if ch == "q":
+                    break
+                key = _CHAR_TO_KEY.get(ch)
+                if key:
+                    if key not in last_seen:
+                        engine.key_down(key)
+                    last_seen[key] = now
+            for key, seen in list(last_seen.items()):
+                if now - seen > RELEASE_TIMEOUT_SECONDS:
+                    del last_seen[key]
+                    engine.key_up(key)
+    finally:
+        termios.tcsetattr(fd, termios.TCSADRAIN, saved)
+        engine.close()
+        print()
+
+STRUCTURAL OBLIGATIONS:
+- return — assert the result is None and has the expected value
+- cover the try body at line 73
+- cover the finally block at line 73
+- cover the loop body at line 74
+- cover the if branch at line 77
+- cover the if branch at line 79
+- cover the if branch at line 82
+- cover the if branch at line 83
+- cover the loop body at line 86
+- cover the if branch at line 87
+
+
+=== prompt 26 2026-08-25T04:19:39Z ===
+You are writing pytest unit tests for functions in an existing codebase.
+
+Below is one or more generation items. For each item you are given the
+function's source, its location, a checklist of structural obligations the
+tests should cover, and — for a mapped item — the requirement the function is
+supposed to satisfy. Write pytest test functions for each item.
+
+Rules:
+
+* Test the code as it is. If the code looks wrong, still write the test that
+  the requirement or the structure demands: a failing test is a finding, not a
+  mistake to write around.
+* Every test function you write must carry the comment
+  `# meridian: unit_id=<unit_id> requirement=<requirement>` on its own line
+  inside the function, copying the item's unit_id and requirement exactly.
+* Import what you use. The test source must compile and be collectable by
+  pytest on its own.
+* Tests must never touch real external resources — no audio or video
+  devices, no network connections, no subprocesses, no GUI windows, no
+  writes outside pytest's tmp_path. Where the code under test opens such a
+  boundary (an audio stream, a socket, a server), stub that library with
+  unittest.mock BEFORE importing the module, and test the logic around the
+  boundary. A test that opens a real device can crash the whole suite.
+* Answer for every item you were given, and for no other item — ONE entry per
+  item. To write several test functions for an item (the checklist usually
+  wants several), put them all inside that item's single "source" string.
+
+Answer with JSON and nothing else, in this shape:
+
+{"tests": [{"unit_id": "<unit_id>", "requirement": "<requirement code or 'structural'>", "source": "<the test source>"}, ...]}
+
+GENERATION ITEMS (1):
+
+ITEM 1
+
+unit_id: 28faeb62248a
+
+requirement: 3-4
+
+REQUIREMENT 3-4: Quit The TUI exits cleanly on `q`, restoring the terminal state and silencing all notes.
+
+stage-2 effect claim: exits on 'q', restoring saved terminal attributes and closing the engine to silence all notes
+
+stage-2 evidence snippet:
+    finally:
+        termios.tcsetattr(fd, termios.TCSADRAIN, saved)
+        engine.close()
+
+FUNCTION python.tui.main (def main() -> None) at python/tui.py:56-93
+
+IMPORT: the test directory's conftest puts this file's directory on sys.path — import the code under test as `from tui import …` (or `import tui`). Do not use any other import path and do not modify sys.path yourself.
+
+SOURCE:
+def main() -> None:
+    active: set[str] = set()  # keys we consider held (UI mirror of engine state)
+    last_seen: dict[str, float] = {}
+
+    def on_state_change(key: str, is_active: bool) -> None:
+        if is_active:
+            active.add(key)
+        else:
+            active.discard(key)
+        _draw(active)
+
+    engine = NoteEngine(on_state_change=on_state_change)
+    fd = sys.stdin.fileno()
+    saved = termios.tcgetattr(fd)
+    tty.setcbreak(fd)
+    print("Rainbow Keys (text mode) -- hold A S D F G / J K L ; ' to play\n")
+    _draw(active)
+    try:
+        while True:
+            ready, _, _ = select.select([sys.stdin], [], [], 0.03)
+            now = time.monotonic()
+            if ready:
+                ch = sys.stdin.read(1).lower()
+                if ch == "q":
+                    break
+                key = _CHAR_TO_KEY.get(ch)
+                if key:
+                    if key not in last_seen:
+                        engine.key_down(key)
+                    last_seen[key] = now
+            for key, seen in list(last_seen.items()):
+                if now - seen > RELEASE_TIMEOUT_SECONDS:
+                    del last_seen[key]
+                    engine.key_up(key)
+    finally:
+        termios.tcsetattr(fd, termios.TCSADRAIN, saved)
+        engine.close()
+        print()
+
+STRUCTURAL OBLIGATIONS:
+- return — assert the result is None and has the expected value
+- cover the try body at line 73
+- cover the finally block at line 73
+- cover the loop body at line 74
+- cover the if branch at line 77
+- cover the if branch at line 79
+- cover the if branch at line 82
+- cover the if branch at line 83
+- cover the loop body at line 86
+- cover the if branch at line 87
+
+

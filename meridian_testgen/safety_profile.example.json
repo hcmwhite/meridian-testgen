@@ -1,0 +1,11 @@
+{
+  "resource_types": {
+    "proprietary_device": {
+      "imports": ["my_device_sdk"],
+      "calls": ["my_device_sdk.Device", "my_device_sdk.connect"],
+      "strategy": "fake",
+      "guidance": "Use the project fake_device fixture; never contact a physical device.",
+      "enforce_test_calls": true
+    }
+  }
+}

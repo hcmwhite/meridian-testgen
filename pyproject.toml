@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "meridian-testgen"
+version = "0.2.0"
+description = "Requirement-driven grey-box test generation: AST parsing, requirement mapping, and validated pytest generation."
+requires-python = ">=3.10"
+dependencies = [
+    "tree-sitter",
+    "tree-sitter-python",
+    "coverage",
+]
+
+[project.optional-dependencies]
+test = ["pytest"]
+
+[project.scripts]
+meridian-parser = "meridian_parser.cli:main"
+meridian-mapper = "meridian_mapper.cli:main"
+meridian-testgen = "meridian_testgen.cli:main"
+
+[tool.setuptools]
+packages = ["meridian_parser", "meridian_mapper", "meridian_testgen"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+# The fixture codebase under tests/fixtures/ is parser input, not part of the
+# suite: it contains test_*.py files that must not be collected by pytest.
+norecursedirs = ["fixtures"]

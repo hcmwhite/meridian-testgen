@@ -1,0 +1,15 @@
+{
+  "schema_version": 2,
+  "tool": "meridian-parser 0.2.0",
+  "generated_at": "2026-08-22T02:30:52+00:00",
+  "input_dir": "<REPO_ROOT>/tests/fixtures/mapper/codebase",
+  "git_commit": "4d948a3e81f64562394aaddab5015507fca18930",
+  "python": "3.14.5",
+  "units": [
+    {"unit_id": "6ef3dca1dc5d", "dotted_name": "shop.cart.add_item", "module": "shop.cart", "scope": "", "name": "add_item", "file_path": "shop/cart.py", "line_number": 4, "column": 0, "end_line": 7, "end_column": 29, "start_byte": 51, "end_byte": 241, "signature": "def add_item(cart, item, quantity=1)"},
+    {"unit_id": "129e61f608e7", "dotted_name": "shop.cart.total_price", "module": "shop.cart", "scope": "", "name": "total_price", "file_path": "shop/cart.py", "line_number": 10, "column": 0, "end_line": 12, "end_column": 68, "start_byte": 244, "end_byte": 392, "signature": "def total_price(cart, prices)"},
+    {"unit_id": "a4aab26adc36", "dotted_name": "shop.cart.Checkout.summarise", "module": "shop.cart", "scope": "Checkout", "name": "summarise", "file_path": "shop/cart.py", "line_number": 16, "column": 4, "end_line": 18, "end_column": 76, "start_byte": 415, "end_byte": 571, "signature": "def summarise(self, cart)"},
+    {"unit_id": "4c2f7c64368b", "dotted_name": "shop.factur\u00e9.calculer_montant", "module": "shop.factur\u00e9", "scope": "", "name": "calculer_montant", "file_path": "shop/factur\u00e9.py", "line_number": 4, "column": 0, "end_line": 7, "end_column": 42, "start_byte": 75, "end_byte": 309, "signature": "def calculer_montant(lignes, taux_tva)"},
+    {"unit_id": "3c2c45288855", "dotted_name": "shop.factur\u00e9.r\u00e9sum\u00e9_fran\u00e7ais", "module": "shop.factur\u00e9", "scope": "", "name": "r\u00e9sum\u00e9_fran\u00e7ais", "file_path": "shop/factur\u00e9.py", "line_number": 10, "column": 0, "end_line": 12, "end_column": 68, "start_byte": 312, "end_byte": 480, "signature": "def r\u00e9sum\u00e9_fran\u00e7ais(client)"}
+  ]
+}

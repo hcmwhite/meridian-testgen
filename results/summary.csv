@@ -1,0 +1,6 @@
+timestamp_pdt,software_under_test,mode,model,tests_created,tests_executed,valid_tests,valid_test_failures,invalid_tests,crashed_files,tokens_out,reported_cost_usd,record_dir
+2026-08-24 21:20,Rainbow Keys,Meridian,Claude Opus 5,201,200,154,4,42,0,69189,5.19,results/runs/20260825-042017Z_rainbow_keys_claude_cli
+2026-08-24 19:55,Rainbow Keys,Meridian,Claude Sonnet 4.5,159,155,76,12,67,0,71469,3.66,results/runs/20260825-025536Z_rainbow_keys_claude_cli
+2026-08-24 22:19,Rainbow Keys,Meridian,Codex 5.6-Terra,58,64,47,2,15,0,32929 (excl. reasoning),not reported,results/runs/20260825-051902Z_rainbow_keys_codex_cli
+2026-08-24 21:47,Rainbow Keys,RAW,Codex 5.6-Terra,14,15,11,0,4,0,5916 visible + 1463 reasoning,not reported,results/runs/20260825-044758Z_rainbow_keys_raw-codex
+2026-08-24 21:44,Rainbow Keys,RAW,Claude Opus 5,59,75,75,0,0,0,14741,1.18,results/runs/20260825-044448Z_rainbow_keys_raw-claude

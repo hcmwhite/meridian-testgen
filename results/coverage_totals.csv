@@ -1,0 +1,6 @@
+run,statements,missed,coverage_pct
+meridian_opus-5,202,28,86
+meridian_sonnet-4-5,202,17,92
+meridian_codex_gpt-5.6-terra,202,24,88
+raw_codex_gpt-5.6-terra,202,72,64
+raw_claude_opus-5,202,77,62

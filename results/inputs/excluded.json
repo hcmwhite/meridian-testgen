@@ -1,0 +1,20 @@
+{
+  "schema_version": 2,
+  "tool": "meridian-parser 0.2.0",
+  "generated_at": "2026-08-23T01:55:00+00:00",
+  "input_dir": "<REPO_ROOT>/rainbow_keys",
+  "git_commit": "44e622551ef8f0a9c031707faf111a6a98d7263c",
+  "python": "3.14.5",
+  "units": [
+    {"unit_id": "1740a2a0a6a1", "dotted_name": "python.audio_logic._Voice.__init__", "module": "python.audio_logic", "scope": "_Voice", "name": "__init__", "file_path": "python/audio_logic.py", "line_number": 33, "column": 4, "end_line": 41, "end_column": 51, "start_byte": 1073, "end_byte": 1514, "signature": "def __init__(self, key: str, frequency_hz: float)", "reason": "dunder_method"},
+    {"unit_id": "0eb7e8fc43b2", "dotted_name": "python.audio_logic.NoteEngine.__init__", "module": "python.audio_logic", "scope": "NoteEngine", "name": "__init__", "file_path": "python/audio_logic.py", "line_number": 77, "column": 4, "end_line": 94, "end_column": 28, "start_byte": 2923, "end_byte": 3690, "signature": "def __init__(self, on_state_change: Optional[StateChangeCallback] = None)", "reason": "dunder_method"},
+    {"unit_id": "9285b352d205", "dotted_name": "python.audio_logic.NoteEngine._emit", "module": "python.audio_logic", "scope": "NoteEngine", "name": "_emit", "file_path": "python/audio_logic.py", "line_number": 132, "column": 4, "end_line": 134, "end_column": 46, "start_byte": 5277, "end_byte": 5406, "signature": "def _emit(self, key: str, active: bool) -> None", "reason": "private_name"},
+    {"unit_id": "7379bd5c9e8f", "dotted_name": "python.audio_logic.NoteEngine._audio_callback", "module": "python.audio_logic", "scope": "NoteEngine", "name": "_audio_callback", "file_path": "python/audio_logic.py", "line_number": 136, "column": 4, "end_line": 142, "end_column": 27, "start_byte": 5412, "end_byte": 5777, "signature": "def _audio_callback(self, outdata, frames, time_info, status) -> None", "reason": "private_name"},
+    {"unit_id": "03f39ec28126", "dotted_name": "python.bridge_server._send", "module": "python.bridge_server", "scope": "", "name": "_send", "file_path": "python/bridge_server.py", "line_number": 28, "column": 0, "end_line": 31, "end_column": 22, "start_byte": 1050, "end_byte": 1175, "signature": "def _send(message: dict) -> None", "reason": "private_name"},
+    {"unit_id": "ce3a42c0dc9d", "dotted_name": "python.bridge_server._send_colors", "module": "python.bridge_server", "scope": "", "name": "_send_colors", "file_path": "python/bridge_server.py", "line_number": 34, "column": 0, "end_line": 39, "end_column": 6, "start_byte": 1178, "end_byte": 1347, "signature": "def _send_colors() -> None", "reason": "private_name"},
+    {"unit_id": "ff2928367152", "dotted_name": "python.bridge_server._send_note_state", "module": "python.bridge_server", "scope": "", "name": "_send_note_state", "file_path": "python/bridge_server.py", "line_number": 42, "column": 0, "end_line": 43, "end_column": 63, "start_byte": 1350, "end_byte": 1467, "signature": "def _send_note_state(key: str, active: bool) -> None", "reason": "private_name"},
+    {"unit_id": "88b835b23505", "dotted_name": "python.tui._ansi_color", "module": "python.tui", "scope": "", "name": "_ansi_color", "file_path": "python/tui.py", "line_number": 36, "column": 0, "end_line": 38, "end_column": 36, "start_byte": 981, "end_byte": 1122, "signature": "def _ansi_color(hex_color: str) -> str", "reason": "private_name"},
+    {"unit_id": "fb0f35f39cf8", "dotted_name": "python.tui._draw", "module": "python.tui", "scope": "", "name": "_draw", "file_path": "python/tui.py", "line_number": 41, "column": 0, "end_line": 53, "end_column": 22, "start_byte": 1125, "end_byte": 1626, "signature": "def _draw(active: set[str]) -> None", "reason": "private_name"},
+    {"unit_id": "9fed3c20daad", "dotted_name": "python.tui.main.on_state_change", "module": "python.tui", "scope": "main", "name": "on_state_change", "file_path": "python/tui.py", "line_number": 60, "column": 4, "end_line": 65, "end_column": 21, "start_byte": 1773, "end_byte": 1946, "signature": "def on_state_change(key: str, is_active: bool) -> None", "reason": "nested_function"}
+  ]
+}
