@@ -1,8 +1,11 @@
 cff-version: 1.2.0
 message: "If you use this software, please cite it as below."
+type: software
 title: "Meridian: requirement-driven grey-box test generation"
 authors:
   - family-names: White
     given-names: Mitch
-year: 2026
+version: 1.0.0
+date-released: 2026-08-29
 license: MIT
+repository-code: https://github.com/hcmwhite/meridian-testgen
